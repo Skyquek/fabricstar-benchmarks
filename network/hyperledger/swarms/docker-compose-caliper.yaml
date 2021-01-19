@@ -14,7 +14,7 @@ services:
         - CALIPER_BENCHCONFIG=benchmarks/fixed-assets.yaml
         - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
         volumes:
-        - ~/Documents/caliper-fabricstar:/hyperledger/caliper/workspace
+        - ~/caliper-benchmarks:/hyperledger/caliper/workspace
         networks:
           - fabricstar
         deploy:
