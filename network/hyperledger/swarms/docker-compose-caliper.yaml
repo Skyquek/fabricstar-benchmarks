@@ -24,4 +24,4 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname == simonpc]   
+              constraints: [node.hostname == swarm-test]   

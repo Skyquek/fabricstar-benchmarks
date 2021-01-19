@@ -48,7 +48,7 @@ services:
             delay: 5s
             max_attempts: 3        
           placement:
-              constraints: [node.hostname == simonpc]
+              constraints: [node.hostname == base]
 
     orderer1:        
         image: hyperledger/fabric-orderer:1.4.8
@@ -78,4 +78,4 @@ services:
             delay: 5s
             max_attempts: 3        
           placement:
-              constraints: [node.hostname == simonpc]          
+              constraints: [node.hostname == base]          
