@@ -1,0 +1,27 @@
+version: '3'
+
+networks:
+  fabricstar:
+    external:
+      name: fabricstar
+
+services:
+    caliper:
+        image: hyperledger/caliper:0.3.2
+        command: launch master
+        environment:
+        - CALIPER_BIND_SUT=fabric:1.4.4
+        - CALIPER_BENCHCONFIG=benchmarks/fixed-assets.yaml
+        - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
+        volumes:
+        - ~/Documents/caliper-fabricstar:/hyperledger/caliper/workspace
+        networks:
+          - fabricstar
+        deploy:
+          replicas: 1
+          restart_policy:
+              condition: on-failure
+              delay: 5s
+              max_attempts: 3
+          placement:
+              constraints: [node.hostname == simonpc]   
