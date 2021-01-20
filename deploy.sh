@@ -1,7 +1,28 @@
 # /bin/bash
 
+BENCHMARK="fixed-assets.yaml"
+
+echo "Do you want to enable Prometheus? (y, n, default=n): "
+read prometheus 
+
+echo "Creating new Network (name: fabricstar)"
+echo
+
 docker network create --attachable -d overlay fabricstar
 
+if [ "$prometheus" == "y" ]; then 
+    BENCHMARK="fixed-assets-prometheus.yaml"
+
+    echo
+    echo "Deploying Prometheus & other Tools..."
+    echo
+
+    docker stack deploy --compose-file=network/hyperledger/docker-compose-prometheus.yaml fabricstar
+
+    sleep 2s
+fi 
+
+echo
 echo "Deploying Zookeepers..."
 echo
 
@@ -61,4 +82,4 @@ echo
 echo "Deploying Caliper."
 echo
 
-docker stack deploy --compose-file=network/hyperledger/swarms/docker-compose-caliper.yaml fabricstar
+env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file=network/hyperledger/swarms/docker-compose-caliper.yaml fabricstar
