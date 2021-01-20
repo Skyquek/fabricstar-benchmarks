@@ -41,7 +41,7 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  swarm-test]       
+              constraints: [node.hostname ==  kafka0]       
 
     kafka1:        
         image: hyperledger/fabric-kafka
@@ -64,7 +64,7 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  swarm-test]                                    
+              constraints: [node.hostname ==  kafka0]                                    
 
     kafka2:        
         image: hyperledger/fabric-kafka
@@ -87,7 +87,7 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  swarm-test]                    
+              constraints: [node.hostname ==  kafka1]                    
 
     kafka3:        
         image: hyperledger/fabric-kafka
@@ -110,4 +110,4 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  swarm-test]                                
+              constraints: [node.hostname ==  kafka3]                                
