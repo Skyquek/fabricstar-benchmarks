@@ -30,6 +30,8 @@ services:
         - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
         - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
         - ORDERER_KAFKA_VERBOSE=true
+        - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
+        - ORDERER_METRICS_PROVIDER=prometheus          
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: orderer
         ports:
@@ -60,6 +62,8 @@ services:
         - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
         - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
         - ORDERER_KAFKA_VERBOSE=true
+        - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
+        - ORDERER_METRICS_PROVIDER=prometheus          
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: orderer
         ports:

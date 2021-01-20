@@ -39,11 +39,13 @@ services:
         - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052        
         - CORE_PEER_NETWORKID=fabricstar
         - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=fabricstar
+        - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9443
+        - CORE_METRICS_PROVIDER=prometheus
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
         - 7051:7051
-        - 7053:7053
+        - 7052:7052
         volumes:
         - /var/run/:/host/var/run/
         - ../../../resources/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/msp/peer
