@@ -2,6 +2,9 @@
 
 BENCHMARK="fixed-assets.yaml"
 
+echo "Choose an Option [0: Hyperledger Fabric, 1: Fabric-Star] (default 0)"
+read choice
+
 echo "Do you want to enable Prometheus? (y, n, default=n): "
 read prometheus 
 
@@ -10,6 +13,11 @@ echo
 
 docker network create --attachable -d overlay fabricstar
 
+folder="hyperledger"
+if [ "$choice" == "1" ]; then 
+    folder="fabric-star"
+fi
+
 if [ "$prometheus" == "y" ]; then 
     BENCHMARK="fixed-assets-prometheus.yaml"
 
@@ -17,7 +25,7 @@ if [ "$prometheus" == "y" ]; then
     echo "Deploying Prometheus & other Tools..."
     echo
 
-    docker stack deploy --compose-file=network/hyperledger/docker-compose-prometheus.yaml fabricstar
+    docker stack deploy --compose-file="network/${folder}/docker-compose-prometheus.yaml" fabricstar
 
     sleep 2s
 fi 
@@ -26,7 +34,7 @@ echo
 echo "Deploying Zookeepers..."
 echo
 
-docker stack deploy --compose-file=network/hyperledger/swarms/docker-compose-zk.yaml fabricstar
+docker stack deploy --compose-file="network/${folder}/swarms/docker-compose-zk.yaml" fabricstar
 
 sleep 2s
 
@@ -44,7 +52,7 @@ echo
 echo "Deploying Kafka Brokers..."
 echo
 
-docker stack deploy --compose-file=network/hyperledger/swarms/docker-compose-kafka.yaml fabricstar
+docker stack deploy --compose-file="network/${folder}/swarms/docker-compose-kafka.yaml" fabricstar
 
 sleep 2s
 
@@ -52,7 +60,7 @@ echo
 echo "Deploying CAs..."
 echo
 
-docker stack deploy --compose-file=network/hyperledger/swarms/orgs/docker-compose-ca.yaml fabricstar
+docker stack deploy --compose-file="network/${folder}/swarms/orgs/docker-compose-ca.yaml" fabricstar
 
 sleep 2s
 
@@ -60,7 +68,7 @@ echo
 echo "Deploying Orderers..."
 echo
 
-docker stack deploy --compose-file=network/hyperledger/swarms/docker-compose-orderer.yaml fabricstar
+docker stack deploy --compose-file="network/${folder}/swarms/docker-compose-orderer.yaml" fabricstar
 
 sleep 2s
 
@@ -68,7 +76,7 @@ echo
 echo "Deploying Org1..."
 echo
 
-docker stack deploy --compose-file=network/hyperledger/swarms/orgs/docker-compose-org1.yaml fabricstar
+docker stack deploy --compose-file="network/${folder}/swarms/orgs/docker-compose-org1.yaml" fabricstar
 
 sleep 2s
 
@@ -76,10 +84,10 @@ echo
 echo "Deploying Org2..."
 echo
 
-docker stack deploy --compose-file=network/hyperledger/swarms/orgs/docker-compose-org2.yaml fabricstar
+docker stack deploy --compose-file="network/${folder}/swarms/orgs/docker-compose-org2.yaml" fabricstar
 
 echo
 echo "Deploying Caliper."
 echo
 
-env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file=network/hyperledger/swarms/docker-compose-caliper.yaml fabricstar
+env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file="network/${folder}/swarms/docker-compose-caliper.yaml" fabricstar

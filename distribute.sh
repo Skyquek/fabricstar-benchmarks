@@ -11,7 +11,7 @@ do
     dirs=$(ssh "ubuntu@$line" -f "ls" | grep "fabricstar-benchmarks")
 
     if [ "$dirs" == "" ]; then 
-        ssh "ubuntu@$line" -f "rm -rf fabricstar-benchmarks; git clone https://github.com/eggersn/fabricstar-benchmarks"
+        ssh "ubuntu@$line" -f "rm -rf fabricstar-benchmarks; git clone https://github.com/eggersn/fabricstar-benchmarks; mv fabricstar-benchmarks caliper-benchmarks"
     else
         ssh "ubuntu@$line" -f "cd fabricstar-benchmarks; git pull origin master"
     fi
