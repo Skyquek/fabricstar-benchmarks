@@ -23,7 +23,7 @@ services:
     peer0Org1:        
         image: hyperledger/fabric-peer:1.4.8
         environment:
-        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - FABRIC_LOGGING_SPEC=grpc=error:error
         - CORE_CHAINCODE_LOGGING_LEVEL=INFO
         - CORE_CHAINCODE_LOGGING_SHIM=INFO
         - CORE_CHAINCODE_EXECUTETIMEOUT=999999
