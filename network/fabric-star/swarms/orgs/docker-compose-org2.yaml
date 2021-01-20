@@ -61,5 +61,5 @@ services:
             delay: 5s
             max_attempts: 3      
           placement:
-                constraints: [node.hostname == base]        
+                constraints: [node.hostname == swarm-test1]        
          

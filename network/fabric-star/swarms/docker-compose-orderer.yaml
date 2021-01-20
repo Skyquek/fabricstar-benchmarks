@@ -51,7 +51,7 @@ services:
             delay: 5s
             max_attempts: 3        
           placement:
-              constraints: [node.hostname == base]
+              constraints: [node.hostname == swarm-test1]
 
     orderer1:        
         image: fabric_star/fabric-orderer
@@ -84,4 +84,4 @@ services:
             delay: 5s
             max_attempts: 3        
           placement:
-              constraints: [node.hostname == base]          
+              constraints: [node.hostname == swarm-test1]          
