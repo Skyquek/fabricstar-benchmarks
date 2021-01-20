@@ -8,5 +8,5 @@ iplist="ip-list.txt"
 while IFS= read -r line 
 do
     echo "$line"
-    ssh "ubuntu@$line" -f "rm -rf caliper-benchmarks; git clone https://github.com/eggersn/caliper-benchmarks"
+    ssh "ubuntu@$line" -f "rm -rf caliper-benchmarks; git clone https://github.com/eggersn/fabricstar-benchmarks"
 done < "$iplist"
