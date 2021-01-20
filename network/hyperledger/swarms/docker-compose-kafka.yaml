@@ -29,7 +29,7 @@ services:
         - KAFKA_BROKER_ID=0
         - KAFKA_MIN_INSYNC_REPLICAS=2
         - KAFKA_DEFAULT_REPLICATION_FACTOR=3
-        - KAFKA_ZOOKEEPER_CONNECT=${ZOO0NAME}:2181,${ZOO1NAME}:2181,${ZOO2NAME}:2181
+        - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
         ports:
         - 9092:9092
         networks:
@@ -52,7 +52,7 @@ services:
         - KAFKA_BROKER_ID=1
         - KAFKA_MIN_INSYNC_REPLICAS=2
         - KAFKA_DEFAULT_REPLICATION_FACTOR=3
-        - KAFKA_ZOOKEEPER_CONNECT=${ZOO0NAME}:2181,${ZOO1NAME}:2181,${ZOO2NAME}:2181
+        - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
         ports:
         - 9093:9092
         networks:
@@ -75,7 +75,7 @@ services:
         - KAFKA_BROKER_ID=2
         - KAFKA_MIN_INSYNC_REPLICAS=2
         - KAFKA_DEFAULT_REPLICATION_FACTOR=3
-        - KAFKA_ZOOKEEPER_CONNECT=${ZOO0NAME}:2181,${ZOO1NAME}:2181,${ZOO2NAME}:2181
+        - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
         ports:
         - 9094:9092
         networks:
@@ -98,7 +98,7 @@ services:
         - KAFKA_BROKER_ID=3
         - KAFKA_MIN_INSYNC_REPLICAS=2
         - KAFKA_DEFAULT_REPLICATION_FACTOR=3
-        - KAFKA_ZOOKEEPER_CONNECT=${ZOO0NAME}:2181,${ZOO1NAME}:2181,${ZOO2NAME}:2181
+        - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
         ports:
         - 9095:9092
         networks:
