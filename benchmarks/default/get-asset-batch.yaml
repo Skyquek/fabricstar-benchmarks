@@ -9,11 +9,11 @@ test:
   rounds:
   - label: get-asset-batch-evaluate-1-8000
     description: Test an evaluateTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `getAssetsFromBatch`. This method performs a getState on a batch of 1 UUID that matches an asset of size 8000 bytes.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-backlog,  opts: {  unfinished_per_client: 20 } }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       create_sizes: [8000]
       assets: 8000
       bytesize: 8000
@@ -22,11 +22,11 @@ test:
     callback: benchmarks/lib/batch-get-asset.js
   - label: get-asset-batch-evaluate-10-8000
     description: Test an evaluateTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `getAssetsFromBatch`. This method performs a getState on a batch of 10 UUIDs that each match an asset of size 8000 bytes.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-backlog,  opts: {  unfinished_per_client: 20 } }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       create_sizes: [8000]
       assets: 8000
       bytesize: 8000
@@ -35,11 +35,11 @@ test:
     callback: benchmarks/lib/batch-get-asset.js
   - label: get-asset-batch-evaluate-20-8000
     description: Test an evaluateTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `getAssetsFromBatch`. This method performs a getState on a batch of 20 UUIDs that each match an asset of size 8000 bytes.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-backlog,  opts: {  unfinished_per_client: 20 } }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       nosetup: true
       assets: 8000
       bytesize: 8000
@@ -48,11 +48,11 @@ test:
     callback: benchmarks/lib/batch-get-asset.js
   - label: get-asset-batch-evaluate-30-8000
     description: Test an evaluateTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `getAssetsFromBatch`. This method performs a getState on a batch of 30 UUIDs that each match an asset of size 8000 bytes.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-backlog,  opts: {  unfinished_per_client: 20 } }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       nosetup: true
       assets: 8000
       bytesize: 8000
@@ -61,11 +61,11 @@ test:
     callback: benchmarks/lib/batch-get-asset.js
   - label: get-asset-batch-evaluate-40-8000
     description: Test an evaluateTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `getAssetsFromBatch`. This method performs a getState on a batch of 40 UUIDs that each match an asset of size 8000 bytes.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-backlog,  opts: {  unfinished_per_client: 20 } }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       nosetup: true
       assets: 8000
       bytesize: 8000
@@ -74,11 +74,11 @@ test:
     callback: benchmarks/lib/batch-get-asset.js
   - label: get-asset-batch-evaluate-50-8000
     description: Test an evaluateTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `getAssetsFromBatch`. This method performs a getState on a batch of 50 UUIDs that each match an asset of size 8000 bytes.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-backlog,  opts: {  unfinished_per_client: 20 } }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       nosetup: true
       assets: 8000
       bytesize: 8000
@@ -87,11 +87,11 @@ test:
     callback: benchmarks/lib/batch-get-asset.js
   - label: get-asset-batch-evaluate-20-8000-fixed-tps
     description: Test an evaluateTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `getAssetsFromBatch`. This method performs a getState on a batch of 20 UUIDs that each match an asset of size 8000 bytes at a fixed TPS.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl:  { type: fixed-rate,  opts: { tps: 30} }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       nosetup: true
       assets: 8000
       bytesize: 8000

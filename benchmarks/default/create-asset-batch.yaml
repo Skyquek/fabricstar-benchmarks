@@ -10,74 +10,73 @@ test:
   rounds:
   - label: create-asset-batch-20-8000-fixed-tps
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which inserts a batch of 20 assets of size 8k bytes into the World State database at a fixed TPS.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-rate,  opts: { tps: 5} }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       bytesize: 8000
       batchsize: 20
     callback: benchmarks/lib/batch-create-asset.js
   - label: create-asset-batch-1-8000
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which inserts a batch of 1 assets of size 8k bytes into the World State database.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 5} }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       bytesize: 8000
       batchsize: 1
     callback: benchmarks/lib/batch-create-asset.js
   - label: create-asset-batch-10-8000
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which inserts a batch of 10 assets of size 8k bytes into the World State database.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 5} }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       bytesize: 8000
       batchsize: 10
     callback: benchmarks/lib/batch-create-asset.js
   - label: create-asset-batch-20-8000
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which inserts a batch of 20 assets of size 8k bytes into the World State database.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 5} }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       bytesize: 8000
       batchsize: 20
     callback: benchmarks/lib/batch-create-asset.js
   - label: create-asset-batch-30-8000
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which inserts a batch of 30 assets of size 8k bytes into the World State database.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 5} }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       bytesize: 8000
       batchsize: 30
     callback: benchmarks/lib/batch-create-asset.js
   - label: create-asset-batch-40-8000
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which inserts a batch of 40 assets of size 8k bytes into the World State database.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 5} }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       bytesize: 8000
       batchsize: 40
     callback: benchmarks/lib/batch-create-asset.js
   - label: create-asset-batch-50-8000
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which inserts a batch of 50 assets of size 8k bytes into the World State database.
-    chaincodeID: fixed-asset-base
+    chaincodeID: fixed-asset
     txDuration: 300
     rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 5} }
     arguments:
-      chaincodeID: fixed-asset-base
+      chaincodeID: fixed-asset
       bytesize: 8000
       batchsize: 50
     callback: benchmarks/lib/batch-create-asset.js
-
 monitor:
   type: none
