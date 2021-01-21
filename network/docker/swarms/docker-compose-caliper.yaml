@@ -11,7 +11,7 @@ services:
         command: launch master
         environment:
         - CALIPER_BIND_SUT=fabric:1.4.4
-        - CALIPER_BENCHCONFIG=benchmarks/${BENCHMARK}
+        - CALIPER_BENCHCONFIG=${BENCHMARK}
         - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
         volumes:
         - ~/caliper-benchmarks:/hyperledger/caliper/workspace

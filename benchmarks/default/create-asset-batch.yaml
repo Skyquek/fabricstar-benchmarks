@@ -24,7 +24,7 @@ test:
         opts:
           tps: 5
       workload:
-        module: benchmarks/api/fabric/lib/batch-create-asset.js
+        module: benchmarks/lib/batch-create-asset.js
         arguments:
           chaincodeID: fixed-asset
           byteSize: 8000
@@ -42,7 +42,7 @@ test:
         opts:
           transactionLoad: 5
       workload:
-        module: benchmarks/api/fabric/lib/batch-create-asset.js
+        module: benchmarks/lib/batch-create-asset.js
         arguments:
           chaincodeID: fixed-asset
           byteSize: 8000
@@ -60,7 +60,7 @@ test:
         opts:
           transactionLoad: 5
       workload:
-        module: benchmarks/api/fabric/lib/batch-create-asset.js
+        module: benchmarks/lib/batch-create-asset.js
         arguments:
           chaincodeID: fixed-asset
           byteSize: 8000
@@ -78,7 +78,7 @@ test:
         opts:
           transactionLoad: 5
       workload:
-        module: benchmarks/api/fabric/lib/batch-create-asset.js
+        module: benchmarks/lib/batch-create-asset.js
         arguments:
           chaincodeID: fixed-asset
           byteSize: 8000
@@ -96,7 +96,7 @@ test:
         opts:
           transactionLoad: 5
       workload:
-        module: benchmarks/api/fabric/lib/batch-create-asset.js
+        module: benchmarks/lib/batch-create-asset.js
         arguments:
           chaincodeID: fixed-asset
           byteSize: 8000
@@ -114,7 +114,7 @@ test:
         opts:
           transactionLoad: 5
       workload:
-        module: benchmarks/api/fabric/lib/batch-create-asset.js
+        module: benchmarks/lib/batch-create-asset.js
         arguments:
           chaincodeID: fixed-asset
           byteSize: 8000
@@ -132,7 +132,7 @@ test:
         opts:
           transactionLoad: 5
       workload:
-        module: benchmarks/api/fabric/lib/batch-create-asset.js
+        module: benchmarks/lib/batch-create-asset.js
         arguments:
           chaincodeID: fixed-asset
           byteSize: 8000
