@@ -37,6 +37,8 @@ services:
           - fabricstar
         volumes:
         - ../../../KafkaKeyPair:/etc/KafkaKeyPair
+        logging:
+          driver: none
         deploy:
           replicas: 1
           restart_policy:
@@ -63,6 +65,8 @@ services:
           - fabricstar
         volumes:
         - ../../../KafkaKeyPair:/etc/KafkaKeyPair
+        logging:
+          driver: none
         deploy:
           replicas: 1
           restart_policy:
@@ -89,6 +93,8 @@ services:
           - fabricstar
         volumes:
         - ../../../KafkaKeyPair:/etc/KafkaKeyPair
+        logging:
+          driver: none
         deploy:
           replicas: 1
           restart_policy:
@@ -115,6 +121,8 @@ services:
           - fabricstar
         volumes:
         - ../../../KafkaKeyPair:/etc/KafkaKeyPair
+        logging:
+          driver: none
         deploy:
           replicas: 1
           restart_policy:

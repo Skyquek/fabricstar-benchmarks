@@ -1,6 +1,6 @@
 # /bin/bash
 
-BENCHMARK="fixed-assets.yaml"
+BENCHMARK="default/base-small.yaml"
 
 echo "Choose an Option [0: Hyperledger Fabric, 1: Fabric-Star] (default 0)"
 read choice
