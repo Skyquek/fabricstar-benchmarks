@@ -140,9 +140,11 @@ do
         sleep 30s 
         replica=$(docker service ls | grep "fabricstar_caliper" | grep "0/1")
     done
-    ./shutdown
+    ./shutdown.sh
 
     reportid=$(ls reports/local | wc -l )
     mv "report.html" "reports/local/$reportid.html"
     rm caliper.log
+
+    sleep 10s
 done
