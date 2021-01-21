@@ -112,9 +112,6 @@ read selection
 selection=$(echo $selection | sed "s/ //")
 
 benchmarks=(`echo $selection | tr ',' ' '`)
-caliperip=$(head -n 1 ip-list.txt)
-
-echo "Caliper ip: $caliperip"
 
 for benchmark in "${benchmarks[@]}"
 do 
@@ -132,10 +129,20 @@ do
     echo "Running $BENCHMARK..."
     deploy $BENCHMARK
     
+
+    echo 
+    echo "Sleeping till benchmark is complete..."
+    echo 
+
     replica=""
     while [ "$replica" == "" ]
     do
         sleep 30s 
         replica=$(docker service ls | grep "fabricstar_caliper" | grep "0/1")
     done
+    ./shutdown
+
+    reportid=$(ls reports/local | wc -l )
+    mv "report.html" "reports/local/$reportid.html"
+    rm caliper.log
 done
