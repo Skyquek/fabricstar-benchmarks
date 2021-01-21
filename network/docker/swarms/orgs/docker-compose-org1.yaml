@@ -21,7 +21,7 @@ networks:
 
 services:
     peer0Org1:        
-        image: hyperledger/fabric-peer:1.4.8
+        image: ${PEERIMAGE}
         environment:
         - FABRIC_LOGGING_SPEC=grpc=error:error
         - CORE_CHAINCODE_LOGGING_LEVEL=INFO
@@ -49,6 +49,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../../resources/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/msp/peer
+        - ../../../../KafkaKeyPair:/etc/KafkaKeyPair 
         networks:
           fabricstar:
             aliases:

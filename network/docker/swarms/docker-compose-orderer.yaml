@@ -21,7 +21,7 @@ networks:
 
 services: 
     orderer0:        
-        image: fabric_star/fabric-orderer
+        image: ${ORDERERIMAGE}
         environment:
         - FABRIC_LOGGING_SPEC=grpc=error:error
         - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -51,10 +51,10 @@ services:
             delay: 5s
             max_attempts: 3        
           placement:
-              constraints: [node.hostname == swarm-test1]
+              constraints: [node.hostname == ordererorg]
 
     orderer1:        
-        image: fabric_star/fabric-orderer
+        image: ${ORDERERIMAGE}
         environment:
         - FABRIC_LOGGING_SPEC=grpc=error:error
         - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -84,4 +84,4 @@ services:
             delay: 5s
             max_attempts: 3        
           placement:
-              constraints: [node.hostname == swarm-test1]          
+              constraints: [node.hostname == ordererorg]          
