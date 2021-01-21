@@ -60,7 +60,4 @@ test:
     callback: benchmarks/lib/get-asset.js
   
 monitor:
-  interval: 5
-  type: ['docker']
-  docker:
-    containers: ['all']
+  type: none
