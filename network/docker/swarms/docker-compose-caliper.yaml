@@ -13,6 +13,9 @@ services:
         - CALIPER_BIND_SUT=fabric:1.4.4
         - CALIPER_BENCHCONFIG=${BENCHMARK}
         - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
+        - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
+        - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
+        - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
         volumes:
         - ~/caliper-benchmarks:/hyperledger/caliper/workspace
         networks:
