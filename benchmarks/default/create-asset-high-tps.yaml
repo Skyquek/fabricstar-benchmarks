@@ -21,7 +21,7 @@ test:
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 100 bytes into the World State database.
     chaincodeID: fixed-asset
     txDuration: 300
-    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 10, startingTps: 200} }
+    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 200} }
     arguments:
       chaincodeID: fixed-asset
       bytesize: 100
@@ -30,7 +30,7 @@ test:
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 1000 bytes into the World State database.
     chaincodeID: fixed-asset
     txDuration: 300
-    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 10, startingTps: 150} }
+    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 150} }
     arguments:
       chaincodeID: fixed-asset
       bytesize: 1000
@@ -39,7 +39,7 @@ test:
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 4000 bytes into the World State database.
     chaincodeID: fixed-asset
     txDuration: 300
-    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 10, startingTps: 120 } }
+    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 120 } }
     arguments:
       chaincodeID: fixed-asset
       bytesize: 4000
@@ -48,7 +48,7 @@ test:
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 8000 bytes into the World State database.
     chaincodeID: fixed-asset
     txDuration: 300
-    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 10, startingTps: 100 } }
+    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 100 } }
     arguments:
       chaincodeID: fixed-asset
       bytesize: 8000
@@ -57,7 +57,7 @@ test:
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 16000 bytes into the World State database.
     chaincodeID: fixed-asset
     txDuration: 300
-    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 10, startingTps: 100 } }
+    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 100 } }
     arguments:
       chaincodeID: fixed-asset
       bytesize: 16000
