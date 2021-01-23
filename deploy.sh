@@ -75,6 +75,7 @@ function deploy {
     echo
 
     env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file="network/docker/swarms/docker-compose-caliper.yaml" fabricstar
+    env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file="network/docker/swarms/docker-compose-caliper1.yaml" fabricstar
 }
 
 

@@ -11,10 +11,12 @@ fi
 rm -rf ./crypto-config/
 rm -f ./genesis.block
 rm -f ./mychannel.tx
+rm -f ./mychannel1.tx
 
 ./bin/cryptogen generate --config=./crypto-config.yaml
 ./bin/configtxgen -profile OrdererGenesis -outputBlock genesis.block -channelID syschannel
 ./bin/configtxgen -profile ChannelConfig -outputCreateChannelTx mychannel.tx -channelID mychannel
+./bin/configtxgen -profile ChannelConfig -outputCreateChannelTx mychannel1.tx -channelID mychannel1
 
 # Rename the key files we use to be key.pem instead of a uuid
 for KEY in $(find crypto-config -type f -name "*_sk"); do

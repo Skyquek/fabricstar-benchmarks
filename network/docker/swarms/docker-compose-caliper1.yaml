@@ -1,0 +1,30 @@
+version: '3'
+
+networks:
+  fabricstar:
+    external:
+      name: fabricstar
+
+services:
+    caliper1:
+        image: hyperledger/caliper:0.3.2
+        command: launch master
+        environment:
+        - CALIPER_BIND_SUT=fabric:latest
+        - CALIPER_BENCHCONFIG=${BENCHMARK}
+        - CALIPER_NETWORKCONFIG=network/config/fabric-api-node-1.yaml
+        - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
+        - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
+        - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
+        volumes:
+        - ~/caliper-benchmarks:/hyperledger/caliper/workspace
+        networks:
+          - fabricstar
+        deploy:
+          replicas: 1
+          restart_policy:
+              condition: on-failure
+              delay: 5s
+              max_attempts: 3
+          placement:
+              constraints: [node.hostname == caliper1]   
