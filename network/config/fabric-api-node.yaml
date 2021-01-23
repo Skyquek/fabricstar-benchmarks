@@ -20,7 +20,7 @@ caliper:
     blockchain: fabric
 
 info:
-    Version: 1.4.0
+    Version: 1.4.8
     Size: 2 Orgs with 1 Peer
     Orderer: Kafka
     Distribution: Single Host
