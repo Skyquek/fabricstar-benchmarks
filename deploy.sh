@@ -15,8 +15,6 @@ function deploy {
     fi
 
     if [ "$prometheus" == "y" ]; then 
-        BENCHMARK="fixed-assets-prometheus.yaml"
-
         echo
         echo "Deploying Prometheus & other Tools..."
         echo
