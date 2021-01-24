@@ -2,7 +2,6 @@
 
 function deploy {
     BENCHMARK=$1
-    caliperWorkers=$2
     docker network create --attachable -d overlay fabricstar
 
     kafkaImage="hyperledger/fabric-kafka"
@@ -76,6 +75,8 @@ function deploy {
 
     env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file="network/docker/swarms/docker-compose-caliper.yaml" fabricstar
 
+    sleep 2s
+
     env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file="network/docker/swarms/docker-compose-caliper-workers.yaml" fabricstar
 }
 
@@ -85,9 +86,6 @@ read choice
 
 echo -n "Do you want to enable Prometheus? (y, n, default=n): "
 read prometheus 
-
-echo -n "How many Caliper Workers should be deployed? "
-read caliperWorkers
 
 echo "Creating new Network (name: fabricstar)"
 echo
@@ -131,7 +129,7 @@ do
     
     echo 
     echo "Running $BENCHMARK..."
-    deploy $BENCHMARK $caliperWorkers
+    deploy $BENCHMARK
     
 
     echo 
