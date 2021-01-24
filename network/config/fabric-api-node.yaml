@@ -39,17 +39,17 @@ clients:
             clientSignedCert:
                 path: network/resources/crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem
 
-    client0.org2.example.com:
-        client:
-            organization: Org2
-            credentialStore:
-                path: /tmp/hfc-kvs/org2
-                cryptoStore:
-                    path: /tmp/hfc-cvs/org2
-            clientPrivateKey:
-                path: network/resources/crypto-config/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/key.pem
-            clientSignedCert:
-                path: network/resources/crypto-config/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/signcerts/User1@org2.example.com-cert.pem
+    # client0.org2.example.com:
+    #     client:
+    #         organization: Org2
+    #         credentialStore:
+    #             path: /tmp/hfc-kvs/org2
+    #             cryptoStore:
+    #                 path: /tmp/hfc-cvs/org2
+    #         clientPrivateKey:
+    #             path: network/resources/crypto-config/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/key.pem
+    #         clientSignedCert:
+    #             path: network/resources/crypto-config/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/signcerts/User1@org2.example.com-cert.pem
 
 channels:
     mychannel:
@@ -57,16 +57,17 @@ channels:
         definition:
             capabilities: []
             consortium: "SampleConsortium"
-            msps: ["Org1MSP", "Org2MSP"]
+            # msps: ["Org1MSP", "Org2MSP"]
+            msps: ["Org1MSP"]
             version: 0
         orderers:
             - orderer0.example.com
-            - orderer1.example.com
+            # - orderer1.example.com
         peers:
             peer0.org1.example.com:
                 eventSource: true
-            peer0.org2.example.com:
-                eventSource: true
+            # peer0.org2.example.com:
+            #     eventSource: true
 
         chaincodes:
             - id: fixed-asset
@@ -87,26 +88,26 @@ organizations:
         signedCert:
             path: network/resources/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
 
-    Org2:
-        mspid: Org2MSP
-        peers:
-            - peer0.org2.example.com
-        certificateAuthorities:
-            - ca.org2.example.com
-        adminPrivateKey:
-            path: network/resources/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/key.pem
-        signedCert:
-            path: network/resources/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem
+    # Org2:
+    #     mspid: Org2MSP
+    #     peers:
+    #         - peer0.org2.example.com
+    #     certificateAuthorities:
+    #         - ca.org2.example.com
+    #     adminPrivateKey:
+    #         path: network/resources/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/key.pem
+    #     signedCert:
+    #         path: network/resources/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem
 
 orderers:
     orderer0.example.com:
         url: grpc://orderer0.example.com:7050
         grpcOptions:
             ssl-target-name-override: orderer0.example.com
-    orderer1.example.com:
-        url: grpc://orderer1.example.com:7050
-        grpcOptions:
-            ssl-target-name-override: orderer1.example.com
+    # orderer1.example.com:
+    #     url: grpc://orderer1.example.com:7050
+    #     grpcOptions:
+    #         ssl-target-name-override: orderer1.example.com
 
 peers:
     peer0.org1.example.com:
@@ -115,11 +116,11 @@ peers:
             ssl-target-name-override: peer0.org1.example.com
             grpc.keepalive_time_ms: 600000
 
-    peer0.org2.example.com:
-        url: grpc://peer0.org2.example.com:7051
-        grpcOptions:
-            ssl-target-name-override: peer0.org2.example.com
-            grpc.keepalive_time_ms: 600000
+    # peer0.org2.example.com:
+    #     url: grpc://peer0.org2.example.com:7051
+    #     grpcOptions:
+    #         ssl-target-name-override: peer0.org2.example.com
+    #         grpc.keepalive_time_ms: 600000
 
 certificateAuthorities:
     ca.org1.example.com:
@@ -130,10 +131,10 @@ certificateAuthorities:
             - enrollId: admin
               enrollSecret: adminpw
 
-    ca.org2.example.com:
-        url: http://ca.org2.example.com:7054
-        httpOptions:
-            verify: false
-        registrar:
-            - enrollId: admin
-              enrollSecret: adminpw
+    # ca.org2.example.com:
+    #     url: http://ca.org2.example.com:7054
+    #     httpOptions:
+    #         verify: false
+    #     registrar:
+    #         - enrollId: admin
+    #           enrollSecret: adminpw
