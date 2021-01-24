@@ -6,18 +6,9 @@ test:
     added into the world state database.
   workers:
     type: local
-    number: 10
+    number: 4
   rounds:
-  - label: create-asset-8000-fixed-tps
-    description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 8000 bytes into the World State database at a fixed TPS rate.
-    chaincodeID: fixed-asset
-    txDuration: 30
-    rateControl:  { type: fixed-rate,  opts: { tps: 100} }
-    arguments:
-      chaincodeID: fixed-asset
-      bytesize: 8000
-    callback: benchmarks/lib/create-asset.js
-  - label: create-asset-100
+  - label: create-asset-200tps-100b
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 100 bytes into the World State database.
     chaincodeID: fixed-asset
     txDuration: 300
@@ -26,59 +17,51 @@ test:
       chaincodeID: fixed-asset
       bytesize: 100
     callback: benchmarks/lib/create-asset.js
-  - label: create-asset-1000
-    description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 1000 bytes into the World State database.
+  - label: create-asset-500tps-100b
+    description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 100 bytes into the World State database.
     chaincodeID: fixed-asset
     txDuration: 300
-    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 150} }
+    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 500} }
     arguments:
       chaincodeID: fixed-asset
-      bytesize: 1000
-    callback: benchmarks/lib/create-asset.js
-  - label: create-asset-4000
-    description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 4000 bytes into the World State database.
+      bytesize: 100
+    callback: benchmarks/lib/create-asset.js  
+  - label: create-asset-1000tps-100b
+    description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 100 bytes into the World State database.
     chaincodeID: fixed-asset
     txDuration: 300
-    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 120 } }
+    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 1000} }
     arguments:
       chaincodeID: fixed-asset
-      bytesize: 4000
-    callback: benchmarks/lib/create-asset.js
-  - label: create-asset-8000
-    description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 8000 bytes into the World State database.
+      bytesize: 100
+    callback: benchmarks/lib/create-asset.js        
+  - label: create-asset-200tps-250b
+    description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 100 bytes into the World State database.
     chaincodeID: fixed-asset
     txDuration: 300
-    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 100 } }
+    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 200} }
     arguments:
       chaincodeID: fixed-asset
-      bytesize: 8000
+      bytesize: 250
     callback: benchmarks/lib/create-asset.js
-  - label: create-asset-16000
-    description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 16000 bytes into the World State database.
+  - label: create-asset-500tps-250b
+    description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 100 bytes into the World State database.
     chaincodeID: fixed-asset
     txDuration: 300
-    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 100 } }
+    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 500} }
     arguments:
       chaincodeID: fixed-asset
-      bytesize: 16000
-    callback: benchmarks/lib/create-asset.js
-  # - label: create-asset-32000
-  #   description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 32000 bytes into the World State database.
-  #   chaincodeID: fixed-asset
-  #   txDuration: 300
-  #   rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 10 } }
-  #   arguments:
-  #     chaincodeID: fixed-asset
-  #     bytesize: 32000
-  #   callback: benchmarks/lib/create-asset.js
-  # - label: create-asset-64000
-  #   description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 64000 bytes into the World State database.
-  #   chaincodeID: fixed-asset
-  #   txDuration: 300
-  #   rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 10 } }
-  #   arguments:
-  #     chaincodeID: fixed-asset
-  #     bytesize: 64000
-  #   callback: benchmarks/lib/create-asset.js
+      bytesize: 250
+    callback: benchmarks/lib/create-asset.js  
+  - label: create-asset-1000tps-250b
+    description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `createAsset`, which inserts an asset of size 100 bytes into the World State database.
+    chaincodeID: fixed-asset
+    txDuration: 300
+    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 1000} }
+    arguments:
+      chaincodeID: fixed-asset
+      bytesize: 250
+    callback: benchmarks/lib/create-asset.js       
+
 monitor:
   type: none

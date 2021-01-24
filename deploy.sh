@@ -2,6 +2,7 @@
 
 function deploy {
     BENCHMARK=$1
+    caliperWorkers=$2
     docker network create --attachable -d overlay fabricstar
 
     kafkaImage="hyperledger/fabric-kafka"
@@ -32,7 +33,6 @@ function deploy {
 
     sleep 2s
 
-    echo
     echo "Deploying Kafka Brokers..."
     echo
 
@@ -64,26 +64,30 @@ function deploy {
 
     sleep 2s
 
-    echo
-    echo "Deploying Org2..."
-    echo
+    # echo
+    # echo "Deploying Org2..."
+    # echo
 
-    env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org2.yaml" fabricstar
+    # env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org2.yaml" fabricstar
 
     echo
     echo "Deploying Caliper."
     echo
 
     env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file="network/docker/swarms/docker-compose-caliper.yaml" fabricstar
-    env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file="network/docker/swarms/docker-compose-caliper1.yaml" fabricstar
+
+    env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file="network/docker/swarms/docker-compose-caliper-workers.yaml" fabricstar
 }
 
 
-echo "Choose an Option [0: Hyperledger Fabric, 1: Fabric-Star] (default 0)"
+echo -n "Choose an Option [0: Hyperledger Fabric, 1: Fabric-Star] (default 0): "
 read choice
 
-echo "Do you want to enable Prometheus? (y, n, default=n): "
+echo -n "Do you want to enable Prometheus? (y, n, default=n): "
 read prometheus 
+
+echo -n "How many Caliper Workers should be deployed? "
+read caliperWorkers
 
 echo "Creating new Network (name: fabricstar)"
 echo
@@ -106,8 +110,9 @@ do
 done
 
 echo
-
+echo -n "Selection: "
 read selection  
+
 selection=$(echo $selection | sed "s/ //")
 
 benchmarks=(`echo $selection | tr ',' ' '`)
@@ -126,7 +131,7 @@ do
     
     echo 
     echo "Running $BENCHMARK..."
-    deploy $BENCHMARK
+    deploy $BENCHMARK $caliperWorkers
     
 
     echo 

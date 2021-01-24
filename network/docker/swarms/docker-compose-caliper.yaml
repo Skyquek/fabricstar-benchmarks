@@ -6,7 +6,7 @@ networks:
       name: fabricstar
 
 services:
-    caliper:
+    caliperManager:
         image: hyperledger/caliper:0.3.2
         command: launch master
         environment:
@@ -16,6 +16,9 @@ services:
         - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
         - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
         - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
+        - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
+        - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
+        - CALIPER_WORDER_REMOTE=true
         volumes:
         - ~/caliper-benchmarks:/hyperledger/caliper/workspace
         networks:
@@ -27,4 +30,23 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname == caliper]   
+              constraints: [node.hostname == calipermanager]                                                                                       
+
+    mosquitto:
+        image: eclipse-mosquitto
+        restart: always
+        ports:
+        - "1883:1883"
+        - "9001:9001"
+        volumes:
+        - ../../config/mosquitto.conf:/mosquitto/config/mosquitto.conf   
+        networks:
+          - fabricstar
+        deploy:
+          replicas: 1
+          restart_policy:
+              condition: on-failure
+              delay: 5s
+              max_attempts: 3
+          placement:
+              constraints: [node.hostname == calipermanager]             
