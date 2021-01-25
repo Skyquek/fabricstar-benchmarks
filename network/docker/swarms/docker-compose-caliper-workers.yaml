@@ -32,7 +32,7 @@ services:
               delay: 5s
               max_attempts: 3                                                                                               
           placement:
-              constraints: [node.hostname == caliperworker2]   
+              constraints: [node.hostname == calipermanager]   
 
     caliperWorker2:
         image: hyperledger/caliper:0.3.2
@@ -60,7 +60,7 @@ services:
               delay: 5s
               max_attempts: 3                                                                                               
           placement:
-              constraints: [node.hostname == caliperworker2] 
+              constraints: [node.hostname == kafka0] 
 
     caliperWorker3:
         image: hyperledger/caliper:0.3.2
@@ -88,7 +88,7 @@ services:
               delay: 5s
               max_attempts: 3                                                                                               
           placement:
-              constraints: [node.hostname == caliperworker3] 
+              constraints: [node.hostname == kafka1] 
 
     caliperWorker4:
         image: hyperledger/caliper:0.3.2
@@ -116,172 +116,172 @@ services:
               delay: 5s
               max_attempts: 3                                                                                               
           placement:
-              constraints: [node.hostname == caliperworker4] 
+              constraints: [node.hostname == kafka2] 
 
-    caliperWorker5:
-        image: hyperledger/caliper:0.3.2
-        command: launch worker
-        environment:
-        - CALIPER_BIND_SUT=fabric:latest
-        - CALIPER_BENCHCONFIG=${BENCHMARK}
-        - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
-        - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
-        - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
-        - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
-        - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
-        - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
-        - CALIPER_WORDER_REMOTE=true
-        volumes:
-        - ~/caliper-benchmarks:/hyperledger/caliper/workspace
-        depends_on:
-        - mosquitto
-        networks:
-          - fabricstar
-        deploy:
-          replicas: 1
-          restart_policy:
-              condition: on-failure
-              delay: 5s
-              max_attempts: 3                                                                                               
-          placement:
-              constraints: [node.hostname == caliperworker5] 
+    # caliperWorker5:
+    #     image: hyperledger/caliper:0.3.2
+    #     command: launch worker
+    #     environment:
+    #     - CALIPER_BIND_SUT=fabric:latest
+    #     - CALIPER_BENCHCONFIG=${BENCHMARK}
+    #     - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
+    #     - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
+    #     - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
+    #     - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
+    #     - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
+    #     - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
+    #     - CALIPER_WORDER_REMOTE=true
+    #     volumes:
+    #     - ~/caliper-benchmarks:/hyperledger/caliper/workspace
+    #     depends_on:
+    #     - mosquitto
+    #     networks:
+    #       - fabricstar
+    #     deploy:
+    #       replicas: 1
+    #       restart_policy:
+    #           condition: on-failure
+    #           delay: 5s
+    #           max_attempts: 3                                                                                               
+    #       placement:
+    #           constraints: [node.hostname == caliperworker5] 
 
-    caliperWorker6:
-        image: hyperledger/caliper:0.3.2
-        command: launch worker
-        environment:
-        - CALIPER_BIND_SUT=fabric:latest
-        - CALIPER_BENCHCONFIG=${BENCHMARK}
-        - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
-        - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
-        - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
-        - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
-        - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
-        - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
-        - CALIPER_WORDER_REMOTE=true
-        volumes:
-        - ~/caliper-benchmarks:/hyperledger/caliper/workspace
-        depends_on:
-        - mosquitto
-        networks:
-          - fabricstar
-        deploy:
-          replicas: 1
-          restart_policy:
-              condition: on-failure
-              delay: 5s
-              max_attempts: 3                                                                                               
-          placement:
-              constraints: [node.hostname == caliperworker6] 
+    # caliperWorker6:
+    #     image: hyperledger/caliper:0.3.2
+    #     command: launch worker
+    #     environment:
+    #     - CALIPER_BIND_SUT=fabric:latest
+    #     - CALIPER_BENCHCONFIG=${BENCHMARK}
+    #     - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
+    #     - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
+    #     - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
+    #     - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
+    #     - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
+    #     - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
+    #     - CALIPER_WORDER_REMOTE=true
+    #     volumes:
+    #     - ~/caliper-benchmarks:/hyperledger/caliper/workspace
+    #     depends_on:
+    #     - mosquitto
+    #     networks:
+    #       - fabricstar
+    #     deploy:
+    #       replicas: 1
+    #       restart_policy:
+    #           condition: on-failure
+    #           delay: 5s
+    #           max_attempts: 3                                                                                               
+    #       placement:
+    #           constraints: [node.hostname == caliperworker6] 
 
-    caliperWorker7:
-        image: hyperledger/caliper:0.3.2
-        command: launch worker
-        environment:
-        - CALIPER_BIND_SUT=fabric:latest
-        - CALIPER_BENCHCONFIG=${BENCHMARK}
-        - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
-        - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
-        - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
-        - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
-        - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
-        - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
-        - CALIPER_WORDER_REMOTE=true
-        volumes:
-        - ~/caliper-benchmarks:/hyperledger/caliper/workspace
-        depends_on:
-        - mosquitto
-        networks:
-          - fabricstar
-        deploy:
-          replicas: 1
-          restart_policy:
-              condition: on-failure
-              delay: 5s
-              max_attempts: 3                                                                                               
-          placement:
-              constraints: [node.hostname == caliperworker7] 
+    # caliperWorker7:
+    #     image: hyperledger/caliper:0.3.2
+    #     command: launch worker
+    #     environment:
+    #     - CALIPER_BIND_SUT=fabric:latest
+    #     - CALIPER_BENCHCONFIG=${BENCHMARK}
+    #     - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
+    #     - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
+    #     - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
+    #     - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
+    #     - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
+    #     - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
+    #     - CALIPER_WORDER_REMOTE=true
+    #     volumes:
+    #     - ~/caliper-benchmarks:/hyperledger/caliper/workspace
+    #     depends_on:
+    #     - mosquitto
+    #     networks:
+    #       - fabricstar
+    #     deploy:
+    #       replicas: 1
+    #       restart_policy:
+    #           condition: on-failure
+    #           delay: 5s
+    #           max_attempts: 3                                                                                               
+    #       placement:
+    #           constraints: [node.hostname == caliperworker7] 
 
-    caliperWorker8:
-        image: hyperledger/caliper:0.3.2
-        command: launch worker
-        environment:
-        - CALIPER_BIND_SUT=fabric:latest
-        - CALIPER_BENCHCONFIG=${BENCHMARK}
-        - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
-        - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
-        - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
-        - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
-        - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
-        - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
-        - CALIPER_WORDER_REMOTE=true
-        volumes:
-        - ~/caliper-benchmarks:/hyperledger/caliper/workspace
-        depends_on:
-        - mosquitto
-        networks:
-          - fabricstar
-        deploy:
-          replicas: 1
-          restart_policy:
-              condition: on-failure
-              delay: 5s
-              max_attempts: 3                                                                                               
-          placement:
-              constraints: [node.hostname == caliperworker8] 
+    # caliperWorker8:
+    #     image: hyperledger/caliper:0.3.2
+    #     command: launch worker
+    #     environment:
+    #     - CALIPER_BIND_SUT=fabric:latest
+    #     - CALIPER_BENCHCONFIG=${BENCHMARK}
+    #     - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
+    #     - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
+    #     - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
+    #     - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
+    #     - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
+    #     - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
+    #     - CALIPER_WORDER_REMOTE=true
+    #     volumes:
+    #     - ~/caliper-benchmarks:/hyperledger/caliper/workspace
+    #     depends_on:
+    #     - mosquitto
+    #     networks:
+    #       - fabricstar
+    #     deploy:
+    #       replicas: 1
+    #       restart_policy:
+    #           condition: on-failure
+    #           delay: 5s
+    #           max_attempts: 3                                                                                               
+    #       placement:
+    #           constraints: [node.hostname == caliperworker8] 
 
-    caliperWorker9:
-        image: hyperledger/caliper:0.3.2
-        command: launch worker
-        environment:
-        - CALIPER_BIND_SUT=fabric:latest
-        - CALIPER_BENCHCONFIG=${BENCHMARK}
-        - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
-        - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
-        - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
-        - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
-        - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
-        - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
-        - CALIPER_WORDER_REMOTE=true
-        volumes:
-        - ~/caliper-benchmarks:/hyperledger/caliper/workspace
-        depends_on:
-        - mosquitto
-        networks:
-          - fabricstar
-        deploy:
-          replicas: 1
-          restart_policy:
-              condition: on-failure
-              delay: 5s
-              max_attempts: 3                                                                                               
-          placement:
-              constraints: [node.hostname == caliperworker9] 
+    # caliperWorker9:
+    #     image: hyperledger/caliper:0.3.2
+    #     command: launch worker
+    #     environment:
+    #     - CALIPER_BIND_SUT=fabric:latest
+    #     - CALIPER_BENCHCONFIG=${BENCHMARK}
+    #     - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
+    #     - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
+    #     - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
+    #     - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
+    #     - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
+    #     - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
+    #     - CALIPER_WORDER_REMOTE=true
+    #     volumes:
+    #     - ~/caliper-benchmarks:/hyperledger/caliper/workspace
+    #     depends_on:
+    #     - mosquitto
+    #     networks:
+    #       - fabricstar
+    #     deploy:
+    #       replicas: 1
+    #       restart_policy:
+    #           condition: on-failure
+    #           delay: 5s
+    #           max_attempts: 3                                                                                               
+    #       placement:
+    #           constraints: [node.hostname == caliperworker9] 
 
-    caliperWorker10:
-        image: hyperledger/caliper:0.3.2
-        command: launch worker
-        environment:
-        - CALIPER_BIND_SUT=fabric:latest
-        - CALIPER_BENCHCONFIG=${BENCHMARK}
-        - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
-        - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
-        - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
-        - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
-        - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
-        - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
-        - CALIPER_WORDER_REMOTE=true
-        volumes:
-        - ~/caliper-benchmarks:/hyperledger/caliper/workspace
-        depends_on:
-        - mosquitto
-        networks:
-          - fabricstar
-        deploy:
-          replicas: 1
-          restart_policy:
-              condition: on-failure
-              delay: 5s
-              max_attempts: 3                                                                                               
-          placement:
-              constraints: [node.hostname == caliperworker10]                                                                                                                                          
+    # caliperWorker10:
+    #     image: hyperledger/caliper:0.3.2
+    #     command: launch worker
+    #     environment:
+    #     - CALIPER_BIND_SUT=fabric:latest
+    #     - CALIPER_BENCHCONFIG=${BENCHMARK}
+    #     - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
+    #     - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
+    #     - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
+    #     - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
+    #     - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
+    #     - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
+    #     - CALIPER_WORDER_REMOTE=true
+    #     volumes:
+    #     - ~/caliper-benchmarks:/hyperledger/caliper/workspace
+    #     depends_on:
+    #     - mosquitto
+    #     networks:
+    #       - fabricstar
+    #     deploy:
+    #       replicas: 1
+    #       restart_policy:
+    #           condition: on-failure
+    #           delay: 5s
+    #           max_attempts: 3                                                                                               
+    #       placement:
+    #           constraints: [node.hostname == caliperworker10]                                                                                                                                          

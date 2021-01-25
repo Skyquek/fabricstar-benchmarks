@@ -30,7 +30,7 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname == caliperworker1]                                                                                       
+              constraints: [node.hostname == calipermanager]                                                                                       
 
     mosquitto:
         image: eclipse-mosquitto
@@ -49,4 +49,4 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname == caliperworker1]             
+              constraints: [node.hostname == calipermanager]             
