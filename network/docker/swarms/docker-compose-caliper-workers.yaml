@@ -32,7 +32,7 @@ services:
               delay: 5s
               max_attempts: 3                                                                                               
           placement:
-              constraints: [node.hostname == calipermanager]   
+              constraints: [node.hostname == caliperworker1]   
 
     caliperWorker2:
         image: hyperledger/caliper:0.3.2
@@ -60,7 +60,7 @@ services:
               delay: 5s
               max_attempts: 3                                                                                               
           placement:
-              constraints: [node.hostname == kafka0] 
+              constraints: [node.hostname == caliperworker2] 
 
     caliperWorker3:
         image: hyperledger/caliper:0.3.2
@@ -88,7 +88,7 @@ services:
               delay: 5s
               max_attempts: 3                                                                                               
           placement:
-              constraints: [node.hostname == kafka1] 
+              constraints: [node.hostname == caliperworker3] 
 
     caliperWorker4:
         image: hyperledger/caliper:0.3.2
@@ -116,7 +116,7 @@ services:
               delay: 5s
               max_attempts: 3                                                                                               
           placement:
-              constraints: [node.hostname == kafka2] 
+              constraints: [node.hostname == caliperworker4] 
 
     # caliperWorker5:
     #     image: hyperledger/caliper:0.3.2
