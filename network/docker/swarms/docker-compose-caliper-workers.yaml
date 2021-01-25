@@ -32,7 +32,7 @@ services:
               delay: 5s
               max_attempts: 3                                                                                               
           placement:
-              constraints: [node.hostname == caliperworker1]   
+              constraints: [node.hostname == caliperworker2]   
 
     caliperWorker2:
         image: hyperledger/caliper:0.3.2

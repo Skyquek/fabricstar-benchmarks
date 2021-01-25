@@ -21,7 +21,7 @@ caliper:
 
 info:
     Version: 1.4
-    Size: 2 Orgs with 1 Peer
+    Size: 1 Orgs with 1 Peer
     Orderer: Kafka
     Distribution: Single Host
     StateDB: GoLevelDB
