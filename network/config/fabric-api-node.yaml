@@ -58,7 +58,6 @@ channels:
             capabilities: []
             consortium: "SampleConsortium"
             msps: ["Org1MSP", "Org2MSP"]
-            msps: ["Org1MSP"]
             version: 0
         orderers:
             - orderer0.example.com

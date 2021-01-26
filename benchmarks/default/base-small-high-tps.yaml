@@ -5,13 +5,13 @@ test:
     a Fabric-SDK-Node Gateway. Each test round flexes a single chaincode method, and includes a null-operation to act as a performance cost baseline.
   workers:
     type: local
-    number: 4
+    number: 160
   rounds:
   - label: empty-contract-evaluate
     description: Test an evaluateTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `nullResponse`, which immediately returns a null response. This represents the fastest possible round trip time for an evaluateTransaction() method.
     chaincodeID: fixed-asset
     txDuration: 60
-    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 500} }
+    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 1000} }
     arguments:
       chaincodeID: fixed-asset
       consensus: false
@@ -20,7 +20,7 @@ test:
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `nullResponse`, which immediately returns a null response. This represents the fastest possible round trip time for a submitTransaction() method.
     chaincodeID: fixed-asset
     txDuration: 60
-    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 300} }
+    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 50, startingTps: 500} }
     arguments:
       chaincodeID: fixed-asset
       consensus: true
@@ -29,7 +29,7 @@ test:
     description: Test a submitTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `create`, which inserts an Asset of size 1000 bytes into the World State database.
     chaincodeID: fixed-asset
     txDuration: 60
-    rateControl: { type: fixed-backlog,  opts: { unfinished_per_client: 20, startingTps: 200} }
+    rateControl: { type: fixed-rate,  opts: { tps: 800} }
     arguments:
       chaincodeID: fixed-asset
       bytesize: 100
