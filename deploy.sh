@@ -32,6 +32,7 @@ function deploy {
 
     sleep 2s
 
+    echo
     echo "Deploying Kafka Brokers..."
     echo
 
