@@ -43,7 +43,7 @@ services:
         delay: 5s
         max_attempts: 3  
       placement:
-        constraints: [node.hostname == org1]
+        constraints: [node.hostname == peer0]
 
   caOrg2:
     image: hyperledger/fabric-ca:1.4.8
@@ -68,7 +68,7 @@ services:
         delay: 5s
         max_attempts: 3  
       placement:
-        constraints: [node.hostname == org2]          
+        constraints: [node.hostname == peer1]          
 
   caOrg3:
     image: hyperledger/fabric-ca:1.4.8
@@ -93,7 +93,7 @@ services:
         delay: 5s
         max_attempts: 3  
       placement:
-        constraints: [node.hostname == org3]  
+        constraints: [node.hostname == peer2]  
 
   caOrg4:
     image: hyperledger/fabric-ca:1.4.8
@@ -118,7 +118,7 @@ services:
         delay: 5s
         max_attempts: 3  
       placement:
-        constraints: [node.hostname == org4]                         
+        constraints: [node.hostname == peer3]                         
 
   caOrg5:
     image: hyperledger/fabric-ca:1.4.8
@@ -143,4 +143,4 @@ services:
         delay: 5s
         max_attempts: 3  
       placement:
-        constraints: [node.hostname == org5]            
+        constraints: [node.hostname == peer4]            

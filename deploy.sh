@@ -174,12 +174,12 @@ read testrunselection
 
 TESTRUN="reports/default"
 
-if [ "$testrunselection" == n ] then 
+if [ "$testrunselection" == n ]; then 
     echo 
     echo -n "Name of new testrun: "
     read newtestrun
     TESTRUN="reports/$newtestrun"
-else 
+else
     count=0
     for entry in "reports"/*
     do
