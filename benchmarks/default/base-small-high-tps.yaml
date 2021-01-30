@@ -5,7 +5,7 @@ test:
     a Fabric-SDK-Node Gateway. Each test round flexes a single chaincode method, and includes a null-operation to act as a performance cost baseline.
   workers:
     type: local
-    number: 160
+    number: 5
   rounds:
   - label: empty-contract-evaluate
     description: Test an evaluateTransaction() Gateway method against the NodeJS `fixed-asset` Smart Contract method named `nullResponse`, which immediately returns a null response. This represents the fastest possible round trip time for an evaluateTransaction() method.

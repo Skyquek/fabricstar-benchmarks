@@ -63,32 +63,57 @@ function deploy {
 
     sleep 2s
 
-    # echo
-    # echo "Deploying Org2..."
-    # echo
+    echo
+    echo "Deploying Org2..."
+    echo
 
-    # env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org2.yaml" fabricstar
+    env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org2.yaml" fabricstar
+
+    sleep 2s
+
+    echo
+    echo "Deploying Org3..."
+    echo
+
+    env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org3.yaml" fabricstar
+
+    sleep 2s
+
+    echo
+    echo "Deploying Org4..."
+    echo
+
+    env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org4.yaml" fabricstar
+
+    sleep 2s
+
+    echo
+    echo "Deploying Org5..."
+    echo
+
+    env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org5.yaml" fabricstar            
 
     echo
     echo "Deploying Caliper."
     echo
 
     env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file="network/docker/swarms/docker-compose-caliper.yaml" fabricstar
-
-    sleep 2s
-
-    env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file="network/docker/swarms/docker-compose-caliper-workers.yaml" fabricstar
 }
 
+# Choose between Hyperledger Fabric and FabricStar
 
 echo -n "Choose an Option [0: Hyperledger Fabric, 1: Fabric-Star] (default 0): "
 read choice
+
+# Choose if Prometheus should be enabled
 
 echo -n "Do you want to enable Prometheus? (y, n, default=n): "
 read prometheus 
 
 echo "Creating new Network (name: fabricstar)"
 echo
+
+# Select Benchmark
 
 echo "Select a Benchmark [default 0]:"
 echo "Use , to seperate multiple selections"
@@ -115,38 +140,93 @@ selection=$(echo $selection | sed "s/ //")
 
 benchmarks=(`echo $selection | tr ',' ' '`)
 
-for benchmark in "${benchmarks[@]}"
-do 
+# Ask how many rounds per benchmark should be performed
+
+echo 
+echo -n "How often should each Benchmark be executed? [default 1] "
+read rounds
+
+if [[ ! $rounds =~ ^[0-9]+$ ]] ; then
+    rounds=1
+fi
+
+# Select Testrun
+
+if [ ! -d "reports" ]; then
+    mkdir -p reports/default
+fi
+ 
+echo
+echo "Available Testruns:"
+echo 
+count=0
+for entry in "reports"/*
+do
+  echo "$count: $entry"
+  ((count=count+1))
+done
+
+echo 
+echo "Select 0-$count to use existing testrun [default: 0]"
+echo "Press n to add a new testrun"
+echo -n "Selection: [0-$count, n, default=0]: "
+read testrunselection
+
+TESTRUN="reports/default"
+
+if [ "$testrunselection" == n ] then 
+    echo 
+    echo -n "Name of new testrun: "
+    read newtestrun
+    TESTRUN="reports/$newtestrun"
+else 
     count=0
-    for entry in "benchmarks/${dir}"/*
+    for entry in "reports"/*
     do
-        if [ "$count" == "$benchmark" ];
+        if [ "$count" == "$testrunselection" ];
         then 
-            BENCHMARK="$entry"
+            TESTRUN="$entry"
         fi
         ((count=count+1))
     done
-    
-    echo 
-    echo "Running $BENCHMARK..."
-    deploy $BENCHMARK
-    
+fi
 
-    echo 
-    echo "Sleeping till benchmark is complete..."
-    echo 
+for benchmark in "${benchmarks[@]}"
+do 
+    round=0
+    while [ "$round" != "$rounds" ]
+    do 
+        count=0
+        for entry in "benchmarks/${dir}"/*
+        do
+            if [ "$count" == "$benchmark" ];
+            then 
+                BENCHMARK="$entry"
+            fi
+            ((count=count+1))
+        done
+        
+        echo 
+        echo "Running $BENCHMARK..."
+        deploy $BENCHMARK
+        
+        echo 
+        echo "Sleeping till benchmark is complete..."
+        echo 
 
-    replica=""
-    while [ "$replica" == "" ]
-    do
-        sleep 30s 
-        replica=$(docker service ls | grep "fabricstar_caliper" | grep "0/1")
+        replica=""
+        while [ "$replica" == "" ]
+        do
+            sleep 30s 
+            replica=$(docker service ls | grep "fabricstar_caliper" | grep "0/1")
+        done
+        ./shutdown.sh
+
+        reportid=$(ls $TESTRUN | wc -l )
+        mv "report.html" "$TESTRUN/$reportid.html"
+        rm caliper.log
+
+        sleep 10s
+        ((round=round+1))
     done
-    ./shutdown.sh
-
-    reportid=$(ls reports/local | wc -l )
-    mv "report.html" "reports/local/$reportid.html"
-    rm caliper.log
-
-    sleep 10s
 done
