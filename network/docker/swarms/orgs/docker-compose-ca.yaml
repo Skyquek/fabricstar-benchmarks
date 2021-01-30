@@ -78,7 +78,7 @@ services:
     - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org3.example.com-cert.pem
     - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/key.pem
     ports:
-    - "8054:7054"
+    - "9054:7054"
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
     - ../../../resources/crypto-config/peerOrganizations/org3.example.com/ca/:/etc/hyperledger/fabric-ca-server-config        
@@ -103,7 +103,7 @@ services:
     - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org4.example.com-cert.pem
     - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/key.pem
     ports:
-    - "8054:7054"
+    - "10054:7054"
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
     - ../../../resources/crypto-config/peerOrganizations/org4.example.com/ca/:/etc/hyperledger/fabric-ca-server-config        
@@ -128,7 +128,7 @@ services:
     - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org5.example.com-cert.pem
     - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/key.pem
     ports:
-    - "8054:7054"
+    - "11054:7054"
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
     - ../../../resources/crypto-config/peerOrganizations/org5.example.com/ca/:/etc/hyperledger/fabric-ca-server-config        

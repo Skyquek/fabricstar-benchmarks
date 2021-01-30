@@ -68,7 +68,7 @@ services:
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: orderer
         ports:
-        - 7050:7050
+        - 8050:7050
         volumes:
         - ../../resources/:/etc/hyperledger/configtx
         - ../../resources/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/:/etc/hyperledger/msp/orderer
@@ -101,7 +101,7 @@ services:
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: orderer
         ports:
-        - 7050:7050
+        - 8050:7050
         volumes:
         - ../../resources/:/etc/hyperledger/configtx
         - ../../resources/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/:/etc/hyperledger/msp/orderer
@@ -109,7 +109,7 @@ services:
         networks:
           fabricstar:
             aliases:
-              - orderer1.example.com
+              - orderer2.example.com
         deploy:
           replicas: 1
           restart_policy:
