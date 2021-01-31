@@ -199,7 +199,45 @@ test:
           consensus: true
 monitors:
     resource:
-    - module: docker
+    - module: prometheus
       options:
-        interval: 4
-        containers: ['all']
+        url: "http://prometheus:9090"
+        metrics:
+          include: [dev-.*, couch, peer, orderer]
+          queries:
+          - name: Avg Memory (MB)
+            query: 'sum(container_memory_rss{name=~".+"}) by (name)'
+            step: 10
+            label: name
+            statistic: avg
+            multiplier: 0.000001
+          - name:   CPU (%)
+            query: sum(rate(container_cpu_usage_seconds_total{name=~".+"}[1m])) by (name)
+            step: 10
+            label: name
+            statistic: avg
+            multiplier: 100
+          - name: Network In (MB)
+            query: sum(rate(container_network_receive_bytes_total{name=~".+"}[1m])) by (name)
+            step: 10
+            label: name
+            statistic: sum
+            multiplier: 0.000001
+          - name: Network Out (MB)
+            query: sum(rate(container_network_transmit_bytes_total{name=~".+"}[1m])) by (name)
+            step: 10
+            label: name
+            statistic: sum
+            multiplier: 0.000001
+          - name: Disc Write (MB)
+            query: sum(rate(container_fs_writes_bytes_total{name=~".+"}[1m])) by (name)
+            step: 10
+            label: name
+            statistic: sum
+            multiplier: 0.000001
+          - name: Disc Read (MB)
+            query: sum(rate(container_fs_reads_bytes_total{name=~".+"}[1m])) by (name)
+            step: 10
+            label: name
+            statistic: sum
+            multiplier: 0.000001
