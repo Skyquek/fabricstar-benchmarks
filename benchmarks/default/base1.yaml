@@ -20,8 +20,8 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10000
-          startingTps: 1000
+          transactionLoad: 1000
+          startingTps: 300
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -37,8 +37,8 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10000
-          startingTps: 700
+          transactionLoad: 1000
+          startingTps: 300
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:

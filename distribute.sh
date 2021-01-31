@@ -10,6 +10,8 @@ do
     echo "$line"
     dirs=$(ssh "ubuntu@$line" -f "ls" | grep "caliper-benchmarks")
 
+    # ssh "ubuntu@$line" -f "rm -rf caliper-benchmarks"
+
     if [ "$dirs" == "" ]; then 
         ssh "ubuntu@$line" -f "rm -rf caliper-benchmarks; git clone https://github.com/eggersn/fabricstar-benchmarks; mv fabricstar-benchmarks caliper-benchmarks"
     else
