@@ -170,7 +170,7 @@ do
   echo "$count: $entry"
   ((count=count+1))
 done
-
+((count=count-1))
 echo 
 echo "Select 0-$count to use existing testrun [default: 0]"
 echo "Press n to add a new testrun"
