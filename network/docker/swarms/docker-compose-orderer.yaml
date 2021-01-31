@@ -23,7 +23,7 @@ services:
     orderer0:        
         image: ${ORDERERIMAGE}
         environment:
-        - FABRIC_LOGGING_SPEC=grpc=error:error
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
         - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
         - ORDERER_GENERAL_GENESISMETHOD=file
         - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
@@ -56,7 +56,7 @@ services:
     orderer1:        
         image: ${ORDERERIMAGE}
         environment:
-        - FABRIC_LOGGING_SPEC=grpc=error:error
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
         - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
         - ORDERER_GENERAL_GENESISMETHOD=file
         - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
@@ -89,7 +89,7 @@ services:
     orderer2:        
         image: ${ORDERERIMAGE}
         environment:
-        - FABRIC_LOGGING_SPEC=grpc=error:error
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
         - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
         - ORDERER_GENERAL_GENESISMETHOD=file
         - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
