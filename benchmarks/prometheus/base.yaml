@@ -241,3 +241,7 @@ monitors:
             label: name
             statistic: sum
             multiplier: 0.000001
+
+observer:
+  type: prometheus
+  interval: 5            

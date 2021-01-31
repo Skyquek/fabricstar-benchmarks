@@ -116,7 +116,12 @@ channels:
               version: v0
               language: node
               path: src/fabric/api/fixed-asset/node
-              metadataPath: src/fabric/api/fixed-asset/metadata                      
+              metadataPath: src/fabric/api/fixed-asset/metadata  
+              instantiate:
+                policy: 
+                    1-of:
+                    - signed-by: 0
+                    - signed-by: 1                    
 
 organizations:
     Org1:
