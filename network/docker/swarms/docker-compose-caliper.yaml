@@ -47,12 +47,10 @@ services:
         - CALIPER_WORKER_REMOTE=true
         volumes:
         - ~/caliper-benchmarks:/hyperledger/caliper/workspace
-        depends_on:
-        - mosquitto
         networks:
           - fabricstar
         deploy:
-          replicas: 1
+          replicas: 2
           restart_policy:
               condition: on-failure
               delay: 5s
@@ -75,12 +73,10 @@ services:
         - CALIPER_WORKER_REMOTE=true
         volumes:
         - ~/caliper-benchmarks:/hyperledger/caliper/workspace
-        depends_on:
-        - mosquitto
         networks:
           - fabricstar
         deploy:
-          replicas: 1
+          replicas: 2
           restart_policy:
               condition: on-failure
               delay: 5s
@@ -103,12 +99,10 @@ services:
         - CALIPER_WORKER_REMOTE=true
         volumes:
         - ~/caliper-benchmarks:/hyperledger/caliper/workspace
-        depends_on:
-        - mosquitto
         networks:
           - fabricstar
         deploy:
-          replicas: 1
+          replicas: 2
           restart_policy:
               condition: on-failure
               delay: 5s
@@ -131,12 +125,10 @@ services:
         - CALIPER_WORKER_REMOTE=true
         volumes:
         - ~/caliper-benchmarks:/hyperledger/caliper/workspace
-        depends_on:
-        - mosquitto
         networks:
           - fabricstar
         deploy:
-          replicas: 1
+          replicas: 2
           restart_policy:
               condition: on-failure
               delay: 5s
@@ -159,12 +151,10 @@ services:
         - CALIPER_WORKER_REMOTE=true
         volumes:
         - ~/caliper-benchmarks:/hyperledger/caliper/workspace
-        depends_on:
-        - mosquitto
         networks:
           - fabricstar
         deploy:
-          replicas: 1
+          replicas: 2
           restart_policy:
               condition: on-failure
               delay: 5s

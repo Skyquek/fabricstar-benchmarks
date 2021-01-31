@@ -98,6 +98,10 @@ function deploy {
     echo "Deploying Caliper."
     echo
 
+    docker stack deploy --compose-file="network/docker/swarms/docker-compose-mosquitto.yaml" fabricstar
+
+    sleep 2s
+
     env BENCHMARK="${BENCHMARK}" docker stack deploy --compose-file="network/docker/swarms/docker-compose-caliper.yaml" fabricstar
 }
 
