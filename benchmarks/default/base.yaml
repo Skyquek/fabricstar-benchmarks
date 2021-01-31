@@ -8,7 +8,7 @@ test:
     as a performance cost baseline.
   workers:
     type: local
-    number: 10
+    number: 5
   rounds:
     - label: empty-contract-evaluate
       description: >-
@@ -46,7 +46,7 @@ test:
         arguments:
           chaincodeID: fixed-asset
           consensus: true
-    - label: create-asset-100
+    - label: create-asset-1000
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `create`, which performs a
@@ -61,8 +61,8 @@ test:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100
-    - label: get-asset-evaluate-100
+          byteSize: 1000
+    - label: get-asset-evaluate-1000
       description: >-
         Test a evaluateTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `getAsset`. This method
@@ -79,10 +79,10 @@ test:
         arguments:
           chaincodeID: fixed-asset
           noSetup: true
-          byteSize: 100
+          byteSize: 1000
           assets: 500
           consensus: false
-    - label: get-asset-submit-100
+    - label: get-asset-submit-1000
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `getAsset`. This method
@@ -100,7 +100,7 @@ test:
         arguments:
           chaincodeID: fixed-asset
           noSetup: true
-          byteSize: 100
+          byteSize: 1000
           assets: 500
           consensus: true
     - label: range-query-evaluate-0
@@ -119,14 +119,14 @@ test:
         module: benchmarks/lib/range-query-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100
+          byteSize: 1000
           range: 200
           offset: 100
           noSetup: true
           pagesize: '10'
           nomatch: true
           consensus: false
-    - label: range-query-evaluate-100
+    - label: range-query-evaluate-1000
       description: >-
         Test an evaluateTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `paginatedRangeQuery`. This
@@ -143,7 +143,7 @@ test:
         module: benchmarks/lib/range-query-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100
+          byteSize: 1000
           range: 200
           offset: 100
           noSetup: true
@@ -166,14 +166,14 @@ test:
         module: benchmarks/lib/range-query-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100
+          byteSize: 1000
           range: 200
           offset: 100
           noSetup: true
           pagesize: '10'
           nomatch: true
           consensus: true
-    - label: range-query-submit-100
+    - label: range-query-submit-1000
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `paginatedRangeQuery`. This
@@ -191,7 +191,7 @@ test:
         module: benchmarks/lib/range-query-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100
+          byteSize: 1000
           range: 200
           offset: 100
           noSetup: true

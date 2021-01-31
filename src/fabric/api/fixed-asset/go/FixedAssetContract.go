@@ -51,7 +51,6 @@ func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface,
 	err := ctx.GetStub().PutState(uuid, bytes)
 
 	if err != nil {
-		fmt.Println("Error performing PutState: " + err.Error())
 		return err
 	}
 
@@ -71,7 +70,6 @@ func (s *SmartContract) CreateAssetsFromBatch(ctx contractapi.TransactionContext
 		err := ctx.GetStub().PutState(fixedAsset.UUID, bytes)
 
 		if err != nil {
-			fmt.Println("Error performing PutState: " + err.Error())
 			return err
 		}
 	}
@@ -86,7 +84,6 @@ func (s *SmartContract) GetAsset(ctx contractapi.TransactionContextInterface, uu
 	bytes, err := ctx.GetStub().GetState(uuid)
 
 	if err != nil {
-		fmt.Println("Error performing GetState: " + err.Error())
 		return nil, err
 	}
 
@@ -95,8 +92,6 @@ func (s *SmartContract) GetAsset(ctx contractapi.TransactionContextInterface, uu
 	err = json.Unmarshal(bytes, fixedAsset)
 
 	if err != nil {
-		fmt.Println("Error performing json.Unmarshal: " + err.Error())
-		fmt.Println("Error performing json.Unmarshal on bytes: " + string(bytes[:]))
 		return nil, err
 	}
 
@@ -113,7 +108,6 @@ func (s *SmartContract) GetAssetsFromBatch(ctx contractapi.TransactionContextInt
 		bytes, err := ctx.GetStub().GetState(uuid)
 
 		if err != nil {
-			fmt.Println("Error performing GetState: " + err.Error())
 			return nil, err
 		}
 
@@ -122,8 +116,6 @@ func (s *SmartContract) GetAssetsFromBatch(ctx contractapi.TransactionContextInt
 		err = json.Unmarshal(bytes, fixedAsset)
 
 		if err != nil {
-			fmt.Println("Error performing json.Unmarshal: " + err.Error())
-			fmt.Println("Error performing json.Unmarshal on bytes: " + string(bytes[:]))
 			return nil, err
 		}
 
@@ -140,7 +132,6 @@ func (s *SmartContract) PaginatedRichQuery(ctx contractapi.TransactionContextInt
 	iterator, metadata, err := ctx.GetStub().GetQueryResultWithPagination(queryString, pagesize, passedBookmark)
 
 	if err != nil {
-		fmt.Println("Error performing GetQueryResultWithPagination: " + err.Error())
 		return nil, err
 	}
 
@@ -167,7 +158,6 @@ func (s *SmartContract) PaginatedRangeQuery(ctx contractapi.TransactionContextIn
 	iterator, metadata, err := ctx.GetStub().GetStateByRangeWithPagination(startKey, endKey, pagesize, passedBookmark)
 
 	if err != nil {
-		fmt.Println("Error performing GetStateByRangeWithPagination: " + err.Error())
 		return nil, err
 	}
 
@@ -202,8 +192,6 @@ func getAllResults(iterator shim.StateQueryIteratorInterface) (*[]*assets.FixedA
 		err := json.Unmarshal(content, fixedAsset)
 
 		if err != nil {
-			fmt.Println("Error performing json.Unmarshal: " + err.Error())
-			fmt.Println("Error performing json.Unmarshal on bytes: " + string(bytes[:]))
 			return nil, err
 		}
 

@@ -27,9 +27,10 @@ class Asset extends Contract {
 
     /**
      * Return a null response
+     * @param {Context} ctx - the transaction context
      * @returns {null}  a null response
      */
-    async emptyContract() {
+    async emptyContract(ctx) {
         if (isVerbose) {
             console.log('Entering emptyContract');
             console.log('Returning null response');
@@ -43,7 +44,7 @@ class Asset extends Contract {
      * {
      *   uuid: unique identifier
      *   creator: the creator
-     *   byteSize: target byteSize of asset
+     *   bytesize: target bytesize of asset
      *   content: variable content
      * }
      * Directly writes the string content against the passed uuid
@@ -66,7 +67,7 @@ class Asset extends Contract {
      * {
      *   uuid: unique identifier
      *   creator: the creator
-     *   byteSize: target byteSize of asset
+     *   bytesize: target bytesize of asset
      *   content: variable content
      * }
      * 
@@ -94,7 +95,7 @@ class Asset extends Contract {
      * {
      *   uuid: unique identifier
      *   creator: the creator
-     *   byteSize: target byteSize of asset
+     *   bytesize: target bytesize of asset
      *   content: variable content
      * }
      * The body is parsed to include a step where the body is an object
@@ -117,7 +118,7 @@ class Asset extends Contract {
      * [{
      *   uuid: unique identifier
      *   creator: the creator
-     *   byteSize: target byteSize of asset
+     *   bytesize: target bytesize of asset
      *   content: variable content
      * }, ...]
      * @param {Context} ctx the context
@@ -144,7 +145,7 @@ class Asset extends Contract {
      * [{
      *   uuid: unique identifier
      *   creator: the creator
-     *   byteSize: target byteSize of asset
+     *   bytesize: target bytesize of asset
      *   content: variable content
      * }, ...]
      * @param {Context} ctx the context
@@ -183,16 +184,9 @@ class Asset extends Contract {
     async getAsset(ctx, uuid) {
         if (isVerbose) {
             console.log('Entering getAsset');
+            console.log(`Returning result for getAsset with uuid: ${uuid}`);
         }
-        const assetAsBytes =  await ctx.stub.getState(uuid);
-        if (!assetAsBytes || assetAsBytes.length === 0) {
-            throw new Error(`Asset with uuid ${uuid} was not successfully retrieved`);
-        } else {
-            if (isVerbose) {
-                console.log(`Returning result for getAsset with uuid: ${uuid}`);
-            }            
-            return assetAsBytes;
-        }
+        return await ctx.stub.getState(uuid);
     }
 
     /**
@@ -205,16 +199,28 @@ class Asset extends Contract {
     async getPrivateAsset(ctx, uuid) {
         if (isVerbose) {
             console.log('Entering getPrivateAsset');
+            console.log(`Returning result for getPrivateAsset with uuid: ${uuid}`);
         }
-        const privateAssetAsBytes =  await ctx.stub.getPrivateData(collection, uuid);
-        if (!privateAssetAsBytes || privateAssetAsBytes.length === 0) {
-            throw new Error(`Private asset with uuid ${uuid} was not successfully retrieved`);
-        } else {
-            if (isVerbose) {
-                console.log(`Returning result for getPrivateAsset with uuid: ${uuid}`);
-            }
-            return privateAssetAsBytes;
+        return await ctx.stub.getPrivateData(collection, uuid);
+    }
+
+    /**
+     * Get an Asset from the registry that was created by createAsset
+     * -includes a parse stage to enable cast of the object
+     * @param {Context} ctx the context
+     * @param {String} uuid the uuid to query
+     * @returns the result of the query
+     */
+    async getAssetObject(ctx, uuid) {
+        if (isVerbose) {
+            console.log('Entering getAssetObject');
         }
+        const assetAsBytes =  await ctx.stub.getState(uuid);
+        const asset = JSON.parse(assetAsBytes.toString());
+        if (isVerbose) {
+            console.log(`Exiting getAssetObject, returning asset with uuid: ${asset.uuid}`);
+        }
+        return asset;
     }
 
     /**
@@ -229,13 +235,10 @@ class Asset extends Contract {
         }
         const items = [];
         const uuids = JSON.parse(batch);
-        for (const uuid of uuids) {
-            const assetAsBytes = await ctx.stub.getState(uuid);
-            if (!assetAsBytes || assetAsBytes.length === 0) {
-                throw new Error(`Asset with uuid ${uuid} was not successfully retrieved`);
-            } else {
-                items.push(assetAsBytes);
-            }
+        for (let i in uuids) {
+            const uuid = uuids[i];
+            const item = await ctx.stub.getState(uuid);
+            items.push(item);
         }
         if (isVerbose) {
             console.log(`Exiting getAssetsFromBatch(), returning result set of size: ${items.length}`);
@@ -296,7 +299,7 @@ class Asset extends Contract {
 
         if (bookmark.length > 0) {
             const { iterator, metadata } = await ctx.stub.getQueryResultWithPagination(queryString, pageSize, bookmark);
-            response.results = await this._getAllResults(iterator);
+            response.results = await this.getAllResults(iterator);
             response.responseMetadata = {
                 RecordsCount: metadata.fetched_records_count,
                 Bookmark: metadata.bookmark,
@@ -304,7 +307,7 @@ class Asset extends Contract {
         } else {
             
             const { iterator, metadata } = await ctx.stub.getQueryResultWithPagination(queryString, pageSize);
-            response.results = await this._getAllResults(iterator);
+            response.results = await this.getAllResults(iterator);
             response.responseMetadata = {
                 RecordsCount: metadata.fetched_records_count,
                 Bookmark: metadata.bookmark,
@@ -317,50 +320,11 @@ class Asset extends Contract {
     }
 
     /**
-     * Run a paginated range query on the DB contents
-     * @param {Object} ctx - the transaction context
-     * @param {String} startKey - the first key in the range of interest
-     * @param {String} endKey - the end key in the range of interest
-     * @param {String} pagesize - the pagesize to return
-     * @param {String} bookmark - the bookmark from which to start the return
-     * @returns {JSON} the results of the paginated query and responseMetadata in a JSON object
-     */
-    async paginatedRangeQuery(ctx, startKey, endKey, pagesize, bookmark = '') {
-        if (isVerbose) {
-            console.log(`Entering paginatedRangeQuery with pagesize [${pagesize}] and limit keys: [${startKey},${endKey}]`);
-        }
-        const response = {};
-        const pageSize = parseInt(pagesize, 10);
-
-        if (bookmark.length > 0) {
-            const { iterator, metadata } = await ctx.stub.getStateByRangeWithPagination(startKey,endKey, pageSize, bookmark);
-            response.results = await this._getAllResults(iterator);
-            response.responseMetadata = {
-                RecordsCount: metadata.fetched_records_count,
-                Bookmark: metadata.bookmark,
-            };
-        } else {
-            const { iterator, metadata } = await ctx.stub.getStateByRangeWithPagination(startKey,endKey, pageSize);
-            response.results = await this._getAllResults(iterator);
-            response.responseMetadata = {
-                RecordsCount: metadata.fetched_records_count,
-                Bookmark: metadata.bookmark,
-            };
-        }
-        if (isVerbose) {
-            console.log(`Exiting paginatedRangeQuery with response: ${JSON.stringify(response)}`);
-        }
-        return response;
-    }
-
-    /**
      * Get all results present in the iterator
      * @param {Object} iterator the iterator to retrieve results from
      * @returns {String[]} all results
-     * @private
-     * @async
      */
-    async _getAllResults(iterator) {
+    async getAllResults(iterator) {
         let allResults = [];
         let res = await iterator.next();
         let iterate = res.value ? true: false;
@@ -383,6 +347,43 @@ class Asset extends Contract {
         }
         await iterator.close();
         return allResults;
+    }
+
+    /**
+     * Run a paginated range query on the DB contents
+     * @param {Object} ctx - the transaction context
+     * @param {String} startKey - the first key in the range of interest
+     * @param {String} endKey - the end key in the range of interest
+     * @param {String} pagesize - the pagesize to return
+     * @param {String} bookmark - the bookmark from which to start the return
+     * @returns {JSON} the results of the paginated query and responseMetadata in a JSON object
+     */
+    async paginatedRangeQuery(ctx, startKey, endKey, pagesize, bookmark = '') {
+        if (isVerbose) {
+            console.log(`Entering paginatedRangeQuery with pagesize [${pagesize}] and limit keys: [${startKey},${endKey}]`);
+        }
+        const response = {};
+        const pageSize = parseInt(pagesize, 10);
+
+        if (bookmark.length > 0) {
+            const { iterator, metadata } = await ctx.stub.getStateByRangeWithPagination(startKey,endKey, pageSize, bookmark);
+            response.results = await this.getAllResults(iterator);
+            response.responseMetadata = {
+                RecordsCount: metadata.fetched_records_count,
+                Bookmark: metadata.bookmark,
+            };
+        } else {
+            const { iterator, metadata } = await ctx.stub.getStateByRangeWithPagination(startKey,endKey, pageSize);
+            response.results = await this.getAllResults(iterator);
+            response.responseMetadata = {
+                RecordsCount: metadata.fetched_records_count,
+                Bookmark: metadata.bookmark,
+            };
+        }
+        if (isVerbose) {
+            console.log(`Exiting paginatedRangeQuery with response: ${JSON.stringify(response)}`);
+        }
+        return response;
     }
 }
 
