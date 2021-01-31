@@ -10,7 +10,7 @@ scrape_configs:
     honor_labels: true
 
     static_configs:
-    - targets: ['prometheus:9090', 'pushGateway:9091', 'peer0.org1.example.com:9443', 'peer0.org2.example.com:9443']
+    - targets: ['prometheus:9090', 'pushGateway:9091', 'peer0.org1.example.com:9443', 'peer0.org2.example.com:9443', 'peer0.org3.example.com:9443', 'peer0.org4.example.com:9443', 'peer0.org5.example.com:9443']
 
   - job_name: 'prometheus-orderer'
 
@@ -18,7 +18,7 @@ scrape_configs:
     honor_labels: true
 
     static_configs:
-    - targets: ['prometheus:9090', 'pushGateway:9091',orderer0.example.com:8443, orderer1.example.com:8443]
+    - targets: ['prometheus:9090', 'pushGateway:9091',orderer0.example.com:8443, orderer1.example.com:8443, orderer2.example.com:8443]
 
   - job_name: cadvisor
     scrape_interval: 5s
