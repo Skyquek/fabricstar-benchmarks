@@ -8,7 +8,7 @@ test:
     as a performance cost baseline.
   workers:
     type: local
-    number: 5
+    number: 8
   rounds:
     - label: empty-contract-evaluate
       description: >-
