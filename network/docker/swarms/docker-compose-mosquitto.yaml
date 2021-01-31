@@ -1,0 +1,28 @@
+version: '3'
+
+networks:
+  fabricstar:
+    external:
+      name: fabricstar
+
+services:
+    mqtt:
+      image: eclipse-mosquitto
+      restart: always
+      ports:
+      - "1883:1883"
+      - "9001:9001"
+      volumes:
+      - ../../config/mosquitto.conf:/mosquitto/config/mosquitto.conf   
+      networks:
+        fabricstar:
+          aliases:
+          - mosquitto
+      deploy:
+        replicas: 1
+        restart_policy:
+            condition: on-failure
+            delay: 5s
+            max_attempts: 3
+        placement:
+            constraints: [node.hostname == caliperworker1]  
