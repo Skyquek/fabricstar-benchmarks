@@ -13,7 +13,7 @@ do
     if [ "$dirs" == "" ]; then 
         ssh "ubuntu@$line" -f "rm -rf caliper-benchmarks; git clone https://github.com/eggersn/fabricstar-benchmarks; mv fabricstar-benchmarks caliper-benchmarks"
     else
-        ssh "ubuntu@$line" -f "cd caliper-benchmarks; git pull origin master"
+        ssh "ubuntu@$line" -f "cd caliper-benchmarks; git reset --hard origin/master; git pull origin master"
     fi
 
 done < "$iplist"
