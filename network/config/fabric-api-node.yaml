@@ -117,7 +117,7 @@ channels:
               language: node
               path: src/fabric/api/fixed-asset/node
               metadataPath: src/fabric/api/fixed-asset/metadata  
-              instantiate:
+              endorsement-policy:
                 policy: 
                     1-of:
                     - signed-by: 0
