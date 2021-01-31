@@ -47,7 +47,7 @@ services:
               max_attempts: 3
           placement:
               constraints: [node.hostname ==  kafka0]     
-          logging:
+        logging:
             driver: none      
 
     kafka1:        

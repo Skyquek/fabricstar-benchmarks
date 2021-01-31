@@ -44,5 +44,3 @@ test:
         arguments:
           chaincodeID: fixed-asset
           byteSize: 100
-monitors:
-    - none
