@@ -29,7 +29,7 @@ services:
         delay: 5s
         max_attempts: 3        
       placement:
-          constraints: [node.hostname == caliperworker3]       
+          constraints: [node.hostname == peer2]       
     networks:
       fabricstar:
         aliases:
@@ -46,7 +46,7 @@ services:
         delay: 5s
         max_attempts: 3        
       placement:
-          constraints: [node.hostname == caliperworker3]       
+          constraints: [node.hostname == peer2]       
     networks:
       fabricstar:
         aliases:
@@ -71,7 +71,7 @@ services:
         delay: 5s
         max_attempts: 3        
       placement:
-          constraints: [node.hostname == caliperworker3] 
+          constraints: [node.hostname == peer2] 
     networks:
       fabricstar:
         aliases:
@@ -93,7 +93,7 @@ services:
         delay: 5s
         max_attempts: 3        
       placement:
-          constraints: [node.hostname == caliperworker3] 
+          constraints: [node.hostname == peer2] 
     networks:
       fabricstar:
         aliases:
