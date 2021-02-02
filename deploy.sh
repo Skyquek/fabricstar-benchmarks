@@ -94,6 +94,8 @@ function deploy {
 
     env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org5.yaml" fabricstar            
 
+    sleep 2s
+
     echo
     echo "Deploying Caliper."
     echo

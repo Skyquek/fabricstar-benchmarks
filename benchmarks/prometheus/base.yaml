@@ -202,8 +202,9 @@ monitors:
     - module: prometheus
       options:
         url: "http://prometheus:9090"
+        push_url: "http://pushGateway:9091"
         metrics:
-          include: [dev-.*, couch, peer, orderer]
+          include: [dev-.*, couch, peer, orderer, caliper]
           queries:
           - name: Avg Memory (MB)
             query: 'sum(container_memory_rss{name=~".+"}) by (name)'
