@@ -23,16 +23,13 @@ services:
     kafka0:        
         image: ${KAFKAIMAGE}
         environment:
-        - KAFKA_MESSAGE_MAX_BYTES=1073741824  # 1024 * 1024 * 1024 B
-        - KAFKA_REPLICA_FETCH_MAX_BYTES=1073741824  # 1024 * 1024 * 1024 B
+        - KAFKA_MESSAGE_MAX_BYTES=1048576  # 1024 * 1024 B
+        - KAFKA_REPLICA_FETCH_MAX_BYTES=1048576  # 1024 * 1024 B
         - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
         - KAFKA_BROKER_ID=0
         - KAFKA_MIN_INSYNC_REPLICAS=2
         - KAFKA_DEFAULT_REPLICATION_FACTOR=3
         - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
-        - KAFKA_LOG4J_ROOT_LOGLEVEL=ERROR
-        - KAFKA_LOG_RETENTION_BYTES=1000000
-        - KAFKA_LOG_RETENTION_MS=30000
         ports:
         - 9092:9092
         networks:
@@ -46,23 +43,18 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  kafka0]     
-        logging:
-            driver: none      
+              constraints: [node.hostname ==  kafka0]         
 
     kafka1:        
         image: ${KAFKAIMAGE}
         environment:
-        - KAFKA_MESSAGE_MAX_BYTES=1073741824  # 1024 * 1024 * 1024 B
-        - KAFKA_REPLICA_FETCH_MAX_BYTES=1073741824  # 1024 * 1024 * 1024 B
+        - KAFKA_MESSAGE_MAX_BYTES=1048576  # 1024 * 1024 B
+        - KAFKA_REPLICA_FETCH_MAX_BYTES=1048576  # 1024 * 1024 B
         - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
         - KAFKA_BROKER_ID=1
         - KAFKA_MIN_INSYNC_REPLICAS=2
         - KAFKA_DEFAULT_REPLICATION_FACTOR=3
         - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
-        - KAFKA_LOG4J_ROOT_LOGLEVEL=ERROR
-        - KAFKA_LOG_RETENTION_BYTES=1000000
-        - KAFKA_LOG_RETENTION_MS=30000
         ports:
         - 9093:9092
         networks:
@@ -76,23 +68,18 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  kafka1]                                    
-        logging:
-          driver: none    
+              constraints: [node.hostname ==  kafka1]                                      
 
     kafka2:        
         image: ${KAFKAIMAGE}
         environment:
-        - KAFKA_MESSAGE_MAX_BYTES=1073741824  # 1024 * 1024 * 1024 B
-        - KAFKA_REPLICA_FETCH_MAX_BYTES=1073741824  # 1024 * 1024 * 1024 B
+        - KAFKA_MESSAGE_MAX_BYTES=1048576  # 1024 * 1024 B
+        - KAFKA_REPLICA_FETCH_MAX_BYTES=1048576  # 1024 * 1024 B
         - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
         - KAFKA_BROKER_ID=2
         - KAFKA_MIN_INSYNC_REPLICAS=2
         - KAFKA_DEFAULT_REPLICATION_FACTOR=3
         - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
-        - KAFKA_LOG4J_ROOT_LOGLEVEL=ERROR
-        - KAFKA_LOG_RETENTION_BYTES=1000000
-        - KAFKA_LOG_RETENTION_MS=30000
         ports:
         - 9094:9092
         networks:
@@ -106,23 +93,18 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  kafka2]     
-        logging:
-          driver: none                   
+              constraints: [node.hostname ==  kafka2]                     
 
     kafka3:        
         image: ${KAFKAIMAGE}
         environment:
-        - KAFKA_MESSAGE_MAX_BYTES=1073741824  # 1024 * 1024 * 1024 B
-        - KAFKA_REPLICA_FETCH_MAX_BYTES=1073741824  # 1024 * 1024 * 1024 B
+        - KAFKA_MESSAGE_MAX_BYTES=1048576  # 1024 * 1024 B
+        - KAFKA_REPLICA_FETCH_MAX_BYTES=1048576  # 1024 * 1024 B
         - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
         - KAFKA_BROKER_ID=3
         - KAFKA_MIN_INSYNC_REPLICAS=2
         - KAFKA_DEFAULT_REPLICATION_FACTOR=3
         - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
-        - KAFKA_LOG4J_ROOT_LOGLEVEL=ERROR
-        - KAFKA_LOG_RETENTION_BYTES=1000000
-        - KAFKA_LOG_RETENTION_MS=30000
         ports:
         - 9095:9092
         networks:
@@ -136,6 +118,4 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  kafka3]   
-        logging:
-          driver: none                             
+              constraints: [node.hostname ==  kafka3]                              
