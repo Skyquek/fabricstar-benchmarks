@@ -87,13 +87,11 @@ services:
     ports:
       - 8080:8080
     deploy:
-      replicas: 1
       restart_policy:
         condition: on-failure
         delay: 5s
         max_attempts: 3        
-      placement:
-          constraints: [node.hostname == caliperworker2] 
+      mode: global
     networks:
       fabricstar:
         aliases:
