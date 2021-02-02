@@ -20,6 +20,8 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--web.external-url=https://0.0.0.0/prometheus'
+      - '--web.route-prefix=/'
     ports:
       - "9090:9090"
     deploy:
@@ -93,6 +95,4 @@ services:
         max_attempts: 3        
       mode: global
     networks:
-      fabricstar:
-        aliases:
-          - cadvisor      
+      - fabricstar    

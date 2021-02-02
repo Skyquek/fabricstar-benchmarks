@@ -20,7 +20,14 @@ scrape_configs:
     static_configs:
     - targets: ['prometheus:9090', 'pushGateway:9091',orderer0.example.com:8443, orderer1.example.com:8443, orderer2.example.com:8443]
 
-  - job_name: cadvisor
-    scrape_interval: 5s
-    static_configs:
-    - targets: ['cadvisor:8080']
+  # - job_name: cadvisor
+  #   scrape_interval: 5s
+  #   static_configs:
+  #   - targets: ['cadvisor:8080']
+
+  - job_name: 'cadvisor'
+    dns_sd_configs:
+    - names:
+      - 'tasks.cadvisor'
+      type: 'A'
+      port: 8080
