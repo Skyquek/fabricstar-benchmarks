@@ -97,7 +97,7 @@ services:
     networks:
       - fabricstar
       
- nodeexporter:
+  nodeexporter:
     image: prom/node-exporter
     volumes:
       - /proc:/host/proc:ro
