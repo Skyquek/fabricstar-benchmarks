@@ -95,4 +95,26 @@ services:
         max_attempts: 3        
       mode: global
     networks:
-      - fabricstar    
+      - fabricstar
+      
+ nodeexporter:
+    image: prom/node-exporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3        
+      mode: global
+    ports:
+      - 9100:9100
+    networks:
+      - fabricstar       
