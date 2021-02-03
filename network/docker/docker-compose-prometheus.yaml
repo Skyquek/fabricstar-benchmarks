@@ -67,7 +67,7 @@ services:
     env_file:
       - ./grafana/config.monitoring
     environment:
-      - GF_SERVER_ROOT_URL="https://0.0.0.0/grafana
+      - GF_SERVER_ROOT_URL=https://0.0.0.0/grafana
       - GF_SERVER_DOMAIN=0.0.0.0
     deploy:
       replicas: 1

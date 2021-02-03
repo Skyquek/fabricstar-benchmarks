@@ -2,3 +2,4 @@ caliper.log
 report.html
 ip-list.txt
 monitors.txt
+network/docker/grafana/config.monitoring
