@@ -1,6 +1,2 @@
 GF_SECURITY_ADMIN_PASSWORD=23QnyWUvdZflrA0scifLliBHPP52zX
 GF_USERS_ALLOW_SIGN_UP=false
-
-[server]
-root_url = http://0.0.0.0/grafana
-serve_from_sub_path = true
