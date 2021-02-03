@@ -8,7 +8,7 @@ test:
     as a performance cost baseline.
   workers:
     type: local
-    number: 48
+    number: 49
   rounds:
     - label: create-asset-25
       description: >-
