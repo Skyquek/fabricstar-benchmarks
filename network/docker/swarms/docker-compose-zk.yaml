@@ -24,7 +24,8 @@ services:
         image: hyperledger/fabric-zookeeper
         environment:
         - ZOO_MY_ID=1
-        - ZOO_SERVERS=server.1=0.0.0.0:2888:3888 server.2=zookeeper1:2888:3888 server.3=zookeeper2:2888:3888
+        - ZOO_SERVERS=server.1=0.0.0.0:2888:3888 
+        # - ZOO_SERVERS=server.1=0.0.0.0:2888:3888 server.2=zookeeper1:2888:3888 server.3=zookeeper2:2888:3888
         ports:
         - 2181:2181
         networks:
@@ -38,38 +39,38 @@ services:
           placement:
               constraints: [node.hostname ==  kafka0]        
 
-    zookeeper1:     
-        image: hyperledger/fabric-zookeeper
-        environment:
-        - ZOO_MY_ID=2
-        - ZOO_SERVERS=server.1=zookeeper0:2888:3888 server.2=0.0.0.0:2888:3888 server.3=zookeeper2:2888:3888
-        ports:
-        - 2182:2181
-        networks:
-          - fabricstar
-        deploy:
-          replicas: 1
-          restart_policy:
-            condition: on-failure
-            delay: 5s
-            max_attempts: 3  
-          placement:
-              constraints: [node.hostname ==  kafka1]               
+    # zookeeper1:     
+    #     image: hyperledger/fabric-zookeeper
+    #     environment:
+    #     - ZOO_MY_ID=2
+    #     - ZOO_SERVERS=server.1=zookeeper0:2888:3888 server.2=0.0.0.0:2888:3888 server.3=zookeeper2:2888:3888
+    #     ports:
+    #     - 2182:2181
+    #     networks:
+    #       - fabricstar
+    #     deploy:
+    #       replicas: 1
+    #       restart_policy:
+    #         condition: on-failure
+    #         delay: 5s
+    #         max_attempts: 3  
+    #       placement:
+    #           constraints: [node.hostname ==  kafka1]               
 
-    zookeeper2:     
-        image: hyperledger/fabric-zookeeper
-        environment:
-        - ZOO_MY_ID=3
-        - ZOO_SERVERS=server.1=zookeeper0:2888:3888 server.2=zookeeper1:2888:3888 server.3=0.0.0.0:2888:3888
-        ports:
-        - 2183:2181
-        networks:
-          - fabricstar
-        deploy:
-          replicas: 1
-          restart_policy:
-            condition: on-failure
-            delay: 5s
-            max_attempts: 3  
-          placement:
-              constraints: [node.hostname ==  kafka2]              
+    # zookeeper2:     
+    #     image: hyperledger/fabric-zookeeper
+    #     environment:
+    #     - ZOO_MY_ID=3
+    #     - ZOO_SERVERS=server.1=zookeeper0:2888:3888 server.2=zookeeper1:2888:3888 server.3=0.0.0.0:2888:3888
+    #     ports:
+    #     - 2183:2181
+    #     networks:
+    #       - fabricstar
+    #     deploy:
+    #       replicas: 1
+    #       restart_policy:
+    #         condition: on-failure
+    #         delay: 5s
+    #         max_attempts: 3  
+    #       placement:
+    #           constraints: [node.hostname ==  kafka2]              

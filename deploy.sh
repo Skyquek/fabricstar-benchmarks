@@ -70,29 +70,29 @@ function deploy {
 
     env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org2.yaml" fabricstar
 
-    sleep 2s
+    # sleep 2s
 
-    echo
-    echo "Deploying Org3..."
-    echo
+    # echo
+    # echo "Deploying Org3..."
+    # echo
 
-    env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org3.yaml" fabricstar
+    # env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org3.yaml" fabricstar
 
-    sleep 2s
+    # sleep 2s
 
-    echo
-    echo "Deploying Org4..."
-    echo
+    # echo
+    # echo "Deploying Org4..."
+    # echo
 
-    env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org4.yaml" fabricstar
+    # env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org4.yaml" fabricstar
 
-    sleep 2s
+    # sleep 2s
 
-    echo
-    echo "Deploying Org5..."
-    echo
+    # echo
+    # echo "Deploying Org5..."
+    # echo
 
-    env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org5.yaml" fabricstar            
+    # env PEERIMAGE="${peerImage}" docker stack deploy --compose-file="network/docker/swarms/orgs/docker-compose-org5.yaml" fabricstar            
 
     sleep 2s
 

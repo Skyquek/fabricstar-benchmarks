@@ -17,7 +17,7 @@ OrdererOrgs:
   Domain: example.com
 
   Template:
-      Count: 3
+      Count: 1
 
 PeerOrgs:
 - Name: Org1
@@ -34,23 +34,23 @@ PeerOrgs:
   Users:
       Count: 1
 
-- Name: Org3
-  Domain: org3.example.com
-  Template:
-      Count: 1
-  Users:
-      Count: 1
+# - Name: Org3
+#   Domain: org3.example.com
+#   Template:
+#       Count: 1
+#   Users:
+#       Count: 1
 
-- Name: Org4
-  Domain: org4.example.com
-  Template:
-      Count: 1
-  Users:
-      Count: 1
+# - Name: Org4
+#   Domain: org4.example.com
+#   Template:
+#       Count: 1
+#   Users:
+#       Count: 1
 
-- Name: Org5
-  Domain: org5.example.com
-  Template:
-      Count: 1
-  Users:
-      Count: 1                  
+# - Name: Org5
+#   Domain: org5.example.com
+#   Template:
+#       Count: 1
+#   Users:
+#       Count: 1                  
