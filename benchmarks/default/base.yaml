@@ -20,7 +20,7 @@ test:
       rateControl:
         type: linear-rate
         opts:
-          startingTps: 50
+          startingTps: 200
           finishingTps: 1000
       workload:
         module: benchmarks/lib/create-asset.js
