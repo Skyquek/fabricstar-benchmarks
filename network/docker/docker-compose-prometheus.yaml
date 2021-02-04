@@ -31,7 +31,7 @@ services:
         delay: 5s
         max_attempts: 3        
       placement:
-          constraints: [node.hostname == kafka1]       
+          constraints: [node.hostname == caliperworker2]       
     networks:
       fabricstar:
         aliases:
@@ -48,7 +48,7 @@ services:
         delay: 5s
         max_attempts: 3        
       placement:
-          constraints: [node.hostname == kafka1]       
+          constraints: [node.hostname == caliperworker2]       
     networks:
       fabricstar:
         aliases:
@@ -76,7 +76,7 @@ services:
         delay: 5s
         max_attempts: 3        
       placement:
-          constraints: [node.hostname == kafka1] 
+          constraints: [node.hostname == caliperworker2] 
     networks:
       fabricstar:
         aliases:
