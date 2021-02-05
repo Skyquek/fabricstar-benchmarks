@@ -103,8 +103,12 @@ channels:
         peers:
             peer0.org1.example.com:
                 eventSource: true
+            peer1.org1.example.com:
+                eventSource: true
             peer0.org2.example.com:
                 eventSource: true
+            peer1.org2.example.com:
+                eventSource: true                
             # peer0.org3.example.com:
             #     eventSource: true
             # peer0.org4.example.com:
@@ -126,6 +130,7 @@ organizations:
         mspid: Org1MSP
         peers:
             - peer0.org1.example.com
+            - peer1.org1.example.com
         certificateAuthorities:
             - ca.org1.example.com
         adminPrivateKey:
@@ -137,6 +142,7 @@ organizations:
         mspid: Org2MSP
         peers:
             - peer0.org2.example.com
+            - peer1.org2.example.com
         certificateAuthorities:
             - ca.org2.example.com
         adminPrivateKey:
@@ -198,11 +204,23 @@ peers:
             ssl-target-name-override: peer0.org1.example.com
             grpc.keepalive_time_ms: 600000
 
+    peer1.org1.example.com:
+        url: grpc://peer1.org1.example.com:7051
+        grpcOptions:
+            ssl-target-name-override: peer1.org1.example.com
+            grpc.keepalive_time_ms: 600000
+
     peer0.org2.example.com:
         url: grpc://peer0.org2.example.com:7051
         grpcOptions:
             ssl-target-name-override: peer0.org2.example.com
             grpc.keepalive_time_ms: 600000
+
+    peer1.org2.example.com:
+        url: grpc://peer1.org2.example.com:7051
+        grpcOptions:
+            ssl-target-name-override: peer1.org2.example.com
+            grpc.keepalive_time_ms: 600000            
 
     # peer0.org3.example.com:
     #     url: grpc://peer0.org3.example.com:7051
