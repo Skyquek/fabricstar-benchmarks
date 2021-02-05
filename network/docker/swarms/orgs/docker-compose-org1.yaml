@@ -87,8 +87,8 @@ services:
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
-        - 7051:7051
-        - 7052:7052
+        - 8051:7051
+        - 8052:7052
         volumes:
         - /var/run/:/host/var/run/
         - ../../../resources/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/:/etc/hyperledger/msp/peer
