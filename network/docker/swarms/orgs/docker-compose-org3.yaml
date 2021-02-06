@@ -44,8 +44,8 @@ services:
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
-        - 9051:7051
-        - 9052:7052
+        - 11051:7051
+        - 11052:7052
         volumes:
         - /var/run/:/host/var/run/
         - ../../../resources/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/:/etc/hyperledger/msp/peer
@@ -61,5 +61,48 @@ services:
             delay: 5s
             max_attempts: 3      
           placement:
-                constraints: [node.hostname == peer2]        
+                constraints: [node.hostname == peer2]      
+
+    peer1Org3:        
+        image: ${PEERIMAGE}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=error:error
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer1.org3.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org3MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer1.org3.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org3.example.com:7051
+        - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052 
+        - CORE_PEER_NETWORKID=fabricstar
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=fabricstar
+        - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9443
+        - CORE_METRICS_PROVIDER=prometheus        
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 12051:7051
+        - 12052:7052
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../../resources/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/:/etc/hyperledger/msp/peer
+        - ../../../../KafkaKeyPair:/etc/KafkaKeyPair 
+        networks:
+          fabricstar:
+            aliases:
+              - peer1.org3.example.com
+        deploy:
+          replicas: 1
+          restart_policy:
+            condition: on-failure
+            delay: 5s
+            max_attempts: 3      
+          placement:
+                constraints: [node.hostname == peer3]                   
          

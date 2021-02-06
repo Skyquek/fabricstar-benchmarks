@@ -70,30 +70,30 @@ services:
       placement:
         constraints: [node.hostname == orderer2]          
 
-  # caOrg3:
-  #   image: hyperledger/fabric-ca:1.4.8
-  #   environment:
-  #   - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
-  #   - FABRIC_CA_SERVER_CA_NAME=ca.org3.example.com
-  #   - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org3.example.com-cert.pem
-  #   - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/key.pem
-  #   ports:
-  #   - "9054:7054"
-  #   command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
-  #   volumes:
-  #   - ../../../resources/crypto-config/peerOrganizations/org3.example.com/ca/:/etc/hyperledger/fabric-ca-server-config        
-  #   networks:
-  #     fabricstar:
-  #       aliases:
-  #         - ca.org3.example.com
-  #   deploy:
-  #     replicas: 1
-  #     restart_policy:
-  #       condition: on-failure
-  #       delay: 5s
-  #       max_attempts: 3  
-  #     placement:
-  #       constraints: [node.hostname == peer2]  
+  caOrg3:
+    image: hyperledger/fabric-ca:1.4.8
+    environment:
+    - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+    - FABRIC_CA_SERVER_CA_NAME=ca.org3.example.com
+    - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org3.example.com-cert.pem
+    - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/key.pem
+    ports:
+    - "9054:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+    - ../../../resources/crypto-config/peerOrganizations/org3.example.com/ca/:/etc/hyperledger/fabric-ca-server-config        
+    networks:
+      fabricstar:
+        aliases:
+          - ca.org3.example.com
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3  
+      placement:
+        constraints: [node.hostname == peer2]  
 
   # caOrg4:
   #   image: hyperledger/fabric-ca:1.4.8

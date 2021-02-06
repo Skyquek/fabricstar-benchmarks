@@ -39,14 +39,14 @@ Organizations:
     - Host: peer0.org2.example.com
       Port: 7051
 
-# - &Org3
-#     Name: Org3MSP
-#     ID: Org3MSP
-#     MSPDir: crypto-config/peerOrganizations/org3.example.com/msp
-#     AdminPrincipal: Role.ADMIN
-#     AnchorPeers:
-#     - Host: peer0.org3.example.com
-#       Port: 7051
+- &Org3
+    Name: Org3MSP
+    ID: Org3MSP
+    MSPDir: crypto-config/peerOrganizations/org3.example.com/msp
+    AdminPrincipal: Role.ADMIN
+    AnchorPeers:
+    - Host: peer0.org3.example.com
+      Port: 7051
 
 # - &Org4
 #     Name: Org4MSP
@@ -103,7 +103,7 @@ Profiles:
                 Organizations:
                 - *Org1
                 - *Org2
-                # - *Org3
+                - *Org3
                 # - *Org4 
                 # - *Org5
     ChannelConfig:
@@ -113,6 +113,6 @@ Profiles:
             Organizations:
             - *Org1
             - *Org2
-            # - *Org3 
+            - *Org3 
             # - *Org4 
             # - *Org5
