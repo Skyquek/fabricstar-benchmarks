@@ -8,25 +8,8 @@ test:
     as a performance cost baseline.
   workers:
     type: local
-    number: 88
+    number: 120
   rounds:
-    - label: create-asset-100-lr
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `create`, which performs a
-        `putState()` operation on an asset of size 100 bytes.
-      chaincodeID: fixed-asset
-      txDuration: 600
-      rateControl:
-        type: linear-rate
-        opts:
-          startingTps: 350
-          finishingTps: 1000
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 100  
     - label: empty-contract-evaluate
       description: >-
         Test an evaluateTransaction() Gateway method against the NodeJS

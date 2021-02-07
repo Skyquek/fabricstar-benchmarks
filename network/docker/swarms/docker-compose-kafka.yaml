@@ -44,7 +44,7 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  peer3]     
+              constraints: [node.hostname ==  kafka0]     
 
     # kafka0:        
     #     image: ${KAFKAIMAGE}
