@@ -93,7 +93,7 @@ services:
         delay: 5s
         max_attempts: 3  
       placement:
-        constraints: [node.hostname == peer2]  
+        constraints: [node.hostname == orderer0]  
 
   # caOrg4:
   #   image: hyperledger/fabric-ca:1.4.8

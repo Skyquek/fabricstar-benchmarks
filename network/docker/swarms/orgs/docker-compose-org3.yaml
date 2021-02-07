@@ -61,7 +61,7 @@ services:
             delay: 5s
             max_attempts: 3      
           placement:
-                constraints: [node.hostname == peer2]      
+                constraints: [node.hostname == orderer0]      
 
     peer1Org3:        
         image: ${PEERIMAGE}
@@ -104,5 +104,5 @@ services:
             delay: 5s
             max_attempts: 3      
           placement:
-                constraints: [node.hostname == peer3]                   
+                constraints: [node.hostname == kafka0]                   
          
