@@ -306,7 +306,7 @@ services:
           placement:
               constraints: [node.hostname == peer3]    
 
-    caliperWorker12:
+    caliperWorker13:
         image: fabric_star/caliper
         command: launch worker
         environment:
