@@ -104,5 +104,5 @@ services:
             delay: 5s
             max_attempts: 3      
           placement:
-                constraints: [node.hostname == kafka3]                 
+                constraints: [node.hostname == kafka0]                 
          

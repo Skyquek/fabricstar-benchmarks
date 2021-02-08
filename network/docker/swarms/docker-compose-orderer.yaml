@@ -50,7 +50,7 @@ services:
             delay: 5s
             max_attempts: 3        
           placement:
-              constraints: [node.hostname == orderer0]
+              constraints: [node.hostname == peer1]
 
     # orderer1:        
     #     image: ${ORDERERIMAGE}
