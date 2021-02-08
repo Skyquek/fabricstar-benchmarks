@@ -22,7 +22,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10000
+          transactionLoad: 20000
       workload:
         module: benchmarks/lib/empty-contract.js
         arguments:
