@@ -131,7 +131,7 @@ services:
           placement:
               constraints: [node.hostname == caliperWorker4]      
 
-    caliperWorker4:
+    caliperWorker5:
         image: fabric_star/caliper
         command: launch worker
         environment:
@@ -154,6 +154,6 @@ services:
               delay: 5s
               max_attempts: 3                                                                                               
           placement:
-              constraints: [node.hostname == caliperWorker4]                                        
+              constraints: [node.hostname == caliperWorker5]                                        
 
                                                                                          
