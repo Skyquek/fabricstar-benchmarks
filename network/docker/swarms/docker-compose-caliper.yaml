@@ -154,6 +154,56 @@ services:
               delay: 5s
               max_attempts: 3                                                                                               
           placement:
-              constraints: [node.hostname == caliperWorker5]                                        
+              constraints: [node.hostname == caliperWorker5] 
+              
+    caliperWorker6:
+        image: fabric_star/caliper
+        command: launch worker
+        environment:
+        - CALIPER_BENCHCONFIG=${BENCHMARK}
+        - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
+        - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
+        - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
+        - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
+        - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
+        - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
+        - CALIPER_WORKER_REMOTE=true
+        volumes:
+        - ~/caliper-benchmarks:/hyperledger/caliper/workspace
+        networks:
+          - fabricstar
+        deploy:
+          replicas: 16
+          restart_policy:
+              condition: on-failure
+              delay: 5s
+              max_attempts: 3                                                                                               
+          placement:
+              constraints: [node.hostname == peer2]    
+
+    caliperWorker7:
+        image: fabric_star/caliper
+        command: launch worker
+        environment:
+        - CALIPER_BENCHCONFIG=${BENCHMARK}
+        - CALIPER_NETWORKCONFIG=network/config/fabric-api-node.yaml
+        - CALIPER_FABRIC_SLEEPAFTER_CREATECHANNEL=10000
+        - CALIPER_FABRIC_SLEEPAFTER_JOINCHANNEL=10000
+        - CALIPER_FABRIC_SLEEPAFTER_INSTANTIATECONTRACT=10000
+        - CALIPER_WORKER_COMMUNICATION_METHOD=mqtt
+        - CALIPER_WORKER_COMMUNICATION_ADDRESS=mqtt://mosquitto:1883
+        - CALIPER_WORKER_REMOTE=true
+        volumes:
+        - ~/caliper-benchmarks:/hyperledger/caliper/workspace
+        networks:
+          - fabricstar
+        deploy:
+          replicas: 16
+          restart_policy:
+              condition: on-failure
+              delay: 5s
+              max_attempts: 3                                                                                               
+          placement:
+              constraints: [node.hostname == kafka3]                          
 
                                                                                          

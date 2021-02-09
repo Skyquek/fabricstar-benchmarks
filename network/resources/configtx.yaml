@@ -57,14 +57,14 @@ Organizations:
     - Host: peer0.org4.example.com
       Port: 7051
 
-- &Org5
-    Name: Org5MSP
-    ID: Org5MSP
-    MSPDir: crypto-config/peerOrganizations/org5.example.com/msp
-    AdminPrincipal: Role.ADMIN
-    AnchorPeers:
-    - Host: peer0.org5.example.com
-      Port: 7051            
+# - &Org5
+#     Name: Org5MSP
+#     ID: Org5MSP
+#     MSPDir: crypto-config/peerOrganizations/org5.example.com/msp
+#     AdminPrincipal: Role.ADMIN
+#     AnchorPeers:
+#     - Host: peer0.org5.example.com
+#       Port: 7051            
 
 Orderer: &OrdererDefaults
     OrdererType: kafka
@@ -105,7 +105,7 @@ Profiles:
                 - *Org2
                 - *Org3
                 - *Org4 
-                - *Org5
+                # - *Org5
     ChannelConfig:
         Consortium: SampleConsortium
         Application:
@@ -115,4 +115,4 @@ Profiles:
             - *Org2
             - *Org3 
             - *Org4 
-            - *Org5
+            # - *Org5
