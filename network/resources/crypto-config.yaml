@@ -17,7 +17,7 @@ OrdererOrgs:
   Domain: example.com
 
   Template:
-      Count: 1
+      Count: 3
 
 PeerOrgs:
 - Name: Org1

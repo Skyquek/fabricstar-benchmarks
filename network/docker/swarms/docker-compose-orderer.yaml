@@ -52,68 +52,68 @@ services:
           placement:
               constraints: [node.hostname == peer1]
 
-    # orderer1:        
-    #     image: ${ORDERERIMAGE}
-    #     environment:
-    #     - FABRIC_LOGGING_SPEC=grpc=fatal:fatal
-    #     - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-    #     - ORDERER_GENERAL_GENESISMETHOD=file
-    #     - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-    #     - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-    #     - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
-    #     - ORDERER_KAFKA_VERBOSE=true
-    #     - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
-    #     - ORDERER_METRICS_PROVIDER=prometheus          
-    #     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
-    #     command: orderer
-    #     ports:
-    #     - 8050:7050
-    #     volumes:
-    #     - ../../resources/:/etc/hyperledger/configtx
-    #     - ../../resources/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/:/etc/hyperledger/msp/orderer
-    #     - ../../../KafkaKeyPair:/etc/KafkaKeyPair  
-    #     networks:
-    #       fabricstar:
-    #         aliases:
-    #           - orderer1.example.com
-    #     deploy:
-    #       replicas: 1
-    #       restart_policy:
-    #         condition: on-failure
-    #         delay: 5s
-    #         max_attempts: 3        
-    #       placement:
-    #           constraints: [node.hostname == orderer1]        
+    orderer1:        
+        image: ${ORDERERIMAGE}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=fatal:fatal
+        - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+        - ORDERER_GENERAL_GENESISMETHOD=file
+        - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
+        - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+        - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
+        - ORDERER_KAFKA_VERBOSE=true
+        - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
+        - ORDERER_METRICS_PROVIDER=prometheus          
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: orderer
+        ports:
+        - 8050:7050
+        volumes:
+        - ../../resources/:/etc/hyperledger/configtx
+        - ../../resources/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/:/etc/hyperledger/msp/orderer
+        - ../../../KafkaKeyPair:/etc/KafkaKeyPair  
+        networks:
+          fabricstar:
+            aliases:
+              - orderer1.example.com
+        deploy:
+          replicas: 1
+          restart_policy:
+            condition: on-failure
+            delay: 5s
+            max_attempts: 3        
+          placement:
+              constraints: [node.hostname == caliperworker4]        
 
-    # orderer2:        
-    #     image: ${ORDERERIMAGE}
-    #     environment:
-    #     - FABRIC_LOGGING_SPEC=grpc=fatal:fatal
-    #     - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-    #     - ORDERER_GENERAL_GENESISMETHOD=file
-    #     - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-    #     - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-    #     - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
-    #     - ORDERER_KAFKA_VERBOSE=true
-    #     - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
-    #     - ORDERER_METRICS_PROVIDER=prometheus          
-    #     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
-    #     command: orderer
-    #     ports:
-    #     - 9050:7050
-    #     volumes:
-    #     - ../../resources/:/etc/hyperledger/configtx
-    #     - ../../resources/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/:/etc/hyperledger/msp/orderer
-    #     - ../../../KafkaKeyPair:/etc/KafkaKeyPair  
-    #     networks:
-    #       fabricstar:
-    #         aliases:
-    #           - orderer2.example.com
-    #     deploy:
-    #       replicas: 1
-    #       restart_policy:
-    #         condition: on-failure
-    #         delay: 5s
-    #         max_attempts: 3        
-    #       placement:
-    #           constraints: [node.hostname == orderer2]                  
+    orderer2:        
+        image: ${ORDERERIMAGE}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=fatal:fatal
+        - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+        - ORDERER_GENERAL_GENESISMETHOD=file
+        - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
+        - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+        - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
+        - ORDERER_KAFKA_VERBOSE=true
+        - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
+        - ORDERER_METRICS_PROVIDER=prometheus          
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: orderer
+        ports:
+        - 9050:7050
+        volumes:
+        - ../../resources/:/etc/hyperledger/configtx
+        - ../../resources/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/:/etc/hyperledger/msp/orderer
+        - ../../../KafkaKeyPair:/etc/KafkaKeyPair  
+        networks:
+          fabricstar:
+            aliases:
+              - orderer2.example.com
+        deploy:
+          replicas: 1
+          restart_policy:
+            condition: on-failure
+            delay: 5s
+            max_attempts: 3        
+          placement:
+              constraints: [node.hostname == caliperworker5]                  

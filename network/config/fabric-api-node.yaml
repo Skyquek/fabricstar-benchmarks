@@ -97,8 +97,8 @@ channels:
             version: 0
         orderers:
             - orderer0.example.com
-            # - orderer1.example.com
-            # - orderer2.example.com
+            - orderer1.example.com
+            - orderer2.example.com
         peers:
             peer0.org1.example.com:
                 eventSource: true
@@ -196,6 +196,16 @@ orderers:
         url: grpc://orderer0.example.com:7050
         grpcOptions:
             ssl-target-name-override: orderer0.example.com         
+
+    orderer1.example.com:
+        url: grpc://orderer1.example.com:7050
+        grpcOptions:
+            ssl-target-name-override: orderer1.example.com     
+
+    orderer2.example.com:
+        url: grpc://orderer2.example.com:7050
+        grpcOptions:
+            ssl-target-name-override: orderer2.example.com                         
 
 peers:
     peer0.org1.example.com:
