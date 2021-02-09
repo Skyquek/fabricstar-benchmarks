@@ -18,7 +18,7 @@ test:
         possible round trip time for an evaluateTransaction() method that does
         not touch the world state or perform any action.
       chaincodeID: fixed-asset
-      txDuration: 900
+      txDuration: 300
       rateControl:
         type: fixed-load
         opts:
@@ -36,7 +36,7 @@ test:
         possible round trip time for a submitTransaction() method that does not
         touch the world state or perform any action.
       chaincodeID: fixed-asset
-      txDuration: 900
+      txDuration: 300
       rateControl:
         type: fixed-load
         opts:
@@ -52,7 +52,7 @@ test:
         `fixed-asset` Smart Contract method named `create`, which performs a
         `putState()` operation on an asset of size 100 bytes.
       chaincodeID: fixed-asset
-      txDuration: 900
+      txDuration: 300
       rateControl:
         type: fixed-load
         opts:
@@ -69,7 +69,7 @@ test:
         performs a `getState()` operation for a passed UUID, retrieving as asset
         of size 100 bytes.
       chaincodeID: fixed-asset
-      txDuration: 900
+      txDuration: 300
       rateControl:
         type: fixed-load
         opts:
@@ -90,7 +90,7 @@ test:
         of size 100 bytes. This test includes involvement of the orderer, and
         appending to the ledger.
       chaincodeID: fixed-asset
-      txDuration: 900
+      txDuration: 300
       rateControl:
         type: fixed-load
         opts:
