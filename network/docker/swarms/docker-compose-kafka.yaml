@@ -44,7 +44,9 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  peer0]         
+              constraints: [node.hostname ==  peer0] 
+        logging:
+          driver: none                    
 
     kafka1:        
         image: ${KAFKAIMAGE}
@@ -69,7 +71,9 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  peer1]                                      
+              constraints: [node.hostname ==  peer1]  
+        logging:
+          driver: none                                      
 
     kafka2:        
         image: ${KAFKAIMAGE}
@@ -94,7 +98,9 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  caliperworker1]                     
+              constraints: [node.hostname ==  caliperworker1] 
+        logging:
+          driver: none                      
 
     kafka3:        
         image: ${KAFKAIMAGE}
@@ -119,4 +125,6 @@ services:
               delay: 5s
               max_attempts: 3
           placement:
-              constraints: [node.hostname ==  caliperworker3]                              
+              constraints: [node.hostname ==  caliperworker3]    
+        logging:
+          driver: none                            
