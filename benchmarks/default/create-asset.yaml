@@ -36,7 +36,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1000
+          transactionLoad: 450
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -52,7 +52,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1000
+          transactionLoad: 350
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -68,7 +68,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1000
+          transactionLoad: 200
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -84,7 +84,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1000
+          transactionLoad: 100
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -100,7 +100,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1000
+          transactionLoad: 100
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -116,7 +116,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1000
+          transactionLoad: 50
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -132,7 +132,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1000
+          transactionLoad: 10
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
