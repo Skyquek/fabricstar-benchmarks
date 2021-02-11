@@ -22,7 +22,7 @@ test:
         opts:
           transactionLoad: 100
       workload:
-        module: benchmarks/api/create-asset.js
+        module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset-base
           byteSize: 16000    
@@ -38,7 +38,7 @@ test:
         opts:
           transactionLoad: 100
       workload:
-        module: benchmarks/api/create-asset.js
+        module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset-base
           byteSize: 100
@@ -54,7 +54,7 @@ test:
         opts:
           transactionLoad: 100
       workload:
-        module: benchmarks/api/create-asset.js
+        module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset-base
           byteSize: 2000
@@ -70,7 +70,7 @@ test:
         opts:
           transactionLoad: 100
       workload:
-        module: benchmarks/api/create-asset.js
+        module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset-base
           byteSize: 4000
@@ -86,7 +86,7 @@ test:
         opts:
           transactionLoad: 100
       workload:
-        module: benchmarks/api/create-asset.js
+        module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset-base
           byteSize: 8000
@@ -102,7 +102,7 @@ test:
         opts:
           transactionLoad: 100
       workload:
-        module: benchmarks/api/create-asset.js
+        module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset-base
           byteSize: 16000
@@ -118,7 +118,7 @@ test:
         opts:
           transactionLoad: 100
       workload:
-        module: benchmarks/api/create-asset.js
+        module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset-base
           byteSize: 32000
@@ -134,7 +134,7 @@ test:
         opts:
           transactionLoad: 100
       workload:
-        module: benchmarks/api/create-asset.js
+        module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset-base
           byteSize: 64000
