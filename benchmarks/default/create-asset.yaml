@@ -10,23 +10,6 @@ test:
     type: local
     number: 5
   rounds:
-    - label: create-asset-8000-fixed-tps
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 8000 bytes into the World State database at a fixed TPS
-        rate.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-rate
-        opts:
-          tps: 15
-      workload:
-        module: benchmarks/api/fabric/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 8000
     - label: create-asset-100
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
@@ -164,46 +147,4 @@ test:
           chaincodeID: fixed-asset
           byteSize: 64000
 monitors:
-    resource:
-    - module: prometheus
-      options:
-        url: "http://localhost:9090"
-        metrics:
-          include: [dev-.*, couch, peer, orderer]
-          queries:
-          - name: Avg Memory (MB)
-            query: 'sum(container_memory_rss{name=~".+"}) by (name)'
-            step: 10
-            label: name
-            statistic: avg
-            multiplier: 0.000001
-          - name:   CPU (%)
-            query: sum(rate(container_cpu_usage_seconds_total{name=~".+"}[1m])) by (name)
-            step: 10
-            label: name
-            statistic: avg
-            multiplier: 100
-          - name: Network In (MB)
-            query: sum(rate(container_network_receive_bytes_total{name=~".+"}[1m])) by (name)
-            step: 10
-            label: name
-            statistic: sum
-            multiplier: 0.000001
-          - name: Network Out (MB)
-            query: sum(rate(container_network_transmit_bytes_total{name=~".+"}[1m])) by (name)
-            step: 10
-            label: name
-            statistic: sum
-            multiplier: 0.000001
-          - name: Disc Write (MB)
-            query: sum(rate(container_fs_writes_bytes_total{name=~".+"}[1m])) by (name)
-            step: 10
-            label: name
-            statistic: sum
-            multiplier: 0.000001
-          - name: Disc Read (MB)
-            query: sum(rate(container_fs_reads_bytes_total{name=~".+"}[1m])) by (name)
-            step: 10
-            label: name
-            statistic: sum
-            multiplier: 0.000001
+    - none
