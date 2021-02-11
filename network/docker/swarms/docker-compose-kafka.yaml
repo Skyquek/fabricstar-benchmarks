@@ -31,6 +31,9 @@ services:
         - KAFKA_MIN_INSYNC_REPLICAS=2
         - KAFKA_DEFAULT_REPLICATION_FACTOR=3
         - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
+        - KAFKA_LOG_CLEANER_ENABLE=true
+        - KAFKA_LOG_POLICY=delete
+        - KAFKA_LOG_RETENTION_BYTES=1GB        
         ports:
         - 9092:9092
         networks:
@@ -56,6 +59,9 @@ services:
         - KAFKA_MIN_INSYNC_REPLICAS=2
         - KAFKA_DEFAULT_REPLICATION_FACTOR=3
         - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
+        - KAFKA_LOG_CLEANER_ENABLE=true
+        - KAFKA_LOG_POLICY=delete
+        - KAFKA_LOG_RETENTION_BYTES=1GB        
         ports:
         - 9093:9092
         networks:
@@ -81,6 +87,9 @@ services:
         - KAFKA_MIN_INSYNC_REPLICAS=2
         - KAFKA_DEFAULT_REPLICATION_FACTOR=3
         - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
+        - KAFKA_LOG_CLEANER_ENABLE=true
+        - KAFKA_LOG_POLICY=delete
+        - KAFKA_LOG_RETENTION_BYTES=1GB
         ports:
         - 9094:9092
         networks:
@@ -106,6 +115,9 @@ services:
         - KAFKA_MIN_INSYNC_REPLICAS=2
         - KAFKA_DEFAULT_REPLICATION_FACTOR=3
         - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
+        - KAFKA_LOG_CLEANER_ENABLE=true
+        - KAFKA_LOG_POLICY=delete
+        - KAFKA_LOG_RETENTION_BYTES=1GB        
         ports:
         - 9095:9092
         networks:

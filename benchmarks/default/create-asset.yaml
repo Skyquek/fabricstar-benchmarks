@@ -8,7 +8,7 @@ test:
     the byteSize of the asset added into the world state database.
   workers:
     type: local
-    number: 40
+    number: 20
   rounds:
     - label: create-asset-16000
       description: >-
