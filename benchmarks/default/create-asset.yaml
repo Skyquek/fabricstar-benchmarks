@@ -20,8 +20,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10
-          startingTps: 1
+          transactionLoad: 1000
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -37,8 +36,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10
-          startingTps: 1
+          transactionLoad: 1000
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -54,8 +52,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10
-          startingTps: 1
+          transactionLoad: 1000
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -71,8 +68,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10
-          startingTps: 1
+          transactionLoad: 1000
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -88,8 +84,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10
-          startingTps: 1
+          transactionLoad: 1000
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -105,8 +100,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10
-          startingTps: 1
+          transactionLoad: 1000
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -122,8 +116,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10
-          startingTps: 1
+          transactionLoad: 1000
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
@@ -139,8 +132,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10
-          startingTps: 1
+          transactionLoad: 1000
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
