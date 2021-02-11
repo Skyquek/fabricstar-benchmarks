@@ -8,7 +8,7 @@ test:
     the byteSize of the asset added into the world state database.
   workers:
     type: local
-    number: 5
+    number: 1
   rounds:
     # - label: create-asset-100
     #   description: >-
@@ -100,7 +100,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10
+          transactionLoad: 5
           startingTps: 1
       workload:
         module: benchmarks/lib/create-asset.js
@@ -117,7 +117,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10
+          transactionLoad: 5
           startingTps: 1
       workload:
         module: benchmarks/lib/create-asset.js
