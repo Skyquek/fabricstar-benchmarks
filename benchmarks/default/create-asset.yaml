@@ -20,7 +20,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 100
+          transactionLoad: 10
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
