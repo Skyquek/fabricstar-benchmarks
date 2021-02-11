@@ -1,5 +1,5 @@
 test:
-  name: create-asset-size-ramp
+  name: create-asset
   description: >-
     This is a duration based benchmark targeting a Hyperledger Fabric network
     using the `fixed-asset` NodeJS chaincode
@@ -10,133 +10,134 @@ test:
     type: local
     number: 40
   rounds:
+    - label: create-asset-16000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAsset`, which inserts
+        an asset of size 16000 bytes into the World State database.
+      chaincodeID: fixed-asset-base
+      txDuration: 100
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 100
+      workload:
+        module: benchmarks/api/create-asset.js
+        arguments:
+          chaincodeID: fixed-asset-base
+          byteSize: 16000    
     - label: create-asset-100
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
         an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
+      chaincodeID: fixed-asset-base
       txDuration: 300
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1000
+          transactionLoad: 100
       workload:
-        module: benchmarks/lib/create-asset.js
+        module: benchmarks/api/create-asset.js
         arguments:
-          chaincodeID: fixed-asset
+          chaincodeID: fixed-asset-base
           byteSize: 100
-    - label: create-asset-1000
+    - label: create-asset-2000
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 1000 bytes into the World State database.
-      chaincodeID: fixed-asset
+        an asset of size 2000 bytes into the World State database.
+      chaincodeID: fixed-asset-base
       txDuration: 300
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 450
+          transactionLoad: 100
       workload:
-        module: benchmarks/lib/create-asset.js
+        module: benchmarks/api/create-asset.js
         arguments:
-          chaincodeID: fixed-asset
-          byteSize: 1000
+          chaincodeID: fixed-asset-base
+          byteSize: 2000
     - label: create-asset-4000
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
         an asset of size 4000 bytes into the World State database.
-      chaincodeID: fixed-asset
+      chaincodeID: fixed-asset-base
       txDuration: 300
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 350
+          transactionLoad: 100
       workload:
-        module: benchmarks/lib/create-asset.js
+        module: benchmarks/api/create-asset.js
         arguments:
-          chaincodeID: fixed-asset
+          chaincodeID: fixed-asset-base
           byteSize: 4000
     - label: create-asset-8000
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
         an asset of size 8000 bytes into the World State database.
-      chaincodeID: fixed-asset
+      chaincodeID: fixed-asset-base
       txDuration: 300
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 200
+          transactionLoad: 100
       workload:
-        module: benchmarks/lib/create-asset.js
+        module: benchmarks/api/create-asset.js
         arguments:
-          chaincodeID: fixed-asset
+          chaincodeID: fixed-asset-base
           byteSize: 8000
     - label: create-asset-16000
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
         an asset of size 16000 bytes into the World State database.
-      chaincodeID: fixed-asset
+      chaincodeID: fixed-asset-base
       txDuration: 300
       rateControl:
         type: fixed-load
         opts:
           transactionLoad: 100
       workload:
-        module: benchmarks/lib/create-asset.js
+        module: benchmarks/api/create-asset.js
         arguments:
-          chaincodeID: fixed-asset
+          chaincodeID: fixed-asset-base
           byteSize: 16000
-    - label: create-asset-24000
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 24000 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-load
-        opts:
-          transactionLoad: 100
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 24000
     - label: create-asset-32000
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
         an asset of size 32000 bytes into the World State database.
-      chaincodeID: fixed-asset
+      chaincodeID: fixed-asset-base
       txDuration: 300
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 50
+          transactionLoad: 100
       workload:
-        module: benchmarks/lib/create-asset.js
+        module: benchmarks/api/create-asset.js
         arguments:
-          chaincodeID: fixed-asset
+          chaincodeID: fixed-asset-base
           byteSize: 32000
     - label: create-asset-64000
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
         an asset of size 64000 bytes into the World State database.
-      chaincodeID: fixed-asset
+      chaincodeID: fixed-asset-base
       txDuration: 300
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 10
+          transactionLoad: 100
       workload:
-        module: benchmarks/lib/create-asset.js
+        module: benchmarks/api/create-asset.js
         arguments:
-          chaincodeID: fixed-asset
+          chaincodeID: fixed-asset-base
           byteSize: 64000
 monitors:
     - none
+
