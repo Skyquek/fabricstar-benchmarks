@@ -11,24 +11,438 @@ test:
     type: local
     number: 40
   rounds:
-    - label: create-asset-batch-20-8000-fixed-tps
+    - label: create-asset-batch-1-100
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
-        inserts a batch of 20 assets of size 8k bytes into the World State
-        database at a fixed TPS.
+        inserts a batch of 1 assets of size 8k bytes into the World State
+        database.
       chaincodeID: fixed-asset
       txDuration: 300
       rateControl:
-        type: fixed-rate
+        type: fixed-load
         opts:
-          tps: 5
+          transactionLoad: 5
       workload:
         module: benchmarks/lib/batch-create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 8000
+          byteSize: 100
+          batchSize: 1
+    - label: create-asset-batch-10-100
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 10 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 100
+          batchSize: 10
+    - label: create-asset-batch-20-100
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 20 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 100
           batchSize: 20
+    - label: create-asset-batch-30-100
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 30 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 100
+          batchSize: 30
+    - label: create-asset-batch-40-100
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 40 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 100
+          batchSize: 40
+    - label: create-asset-batch-50-100
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 50 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 100
+          batchSize: 50  
+    - label: create-asset-batch-1-1000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 1 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 1000
+          batchSize: 1
+    - label: create-asset-batch-10-1000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 10 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 1000
+          batchSize: 10
+    - label: create-asset-batch-20-1000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 20 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 1000
+          batchSize: 20
+    - label: create-asset-batch-30-1000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 30 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 1000
+          batchSize: 30
+    - label: create-asset-batch-40-1000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 40 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 1000
+          batchSize: 40
+    - label: create-asset-batch-50-1000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 50 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 1000
+          batchSize: 50
+    - label: create-asset-batch-1-2000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 1 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 2000
+          batchSize: 1
+    - label: create-asset-batch-10-2000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 10 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 2000
+          batchSize: 10
+    - label: create-asset-batch-20-2000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 20 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 2000
+          batchSize: 20
+    - label: create-asset-batch-30-2000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 30 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 2000
+          batchSize: 30
+    - label: create-asset-batch-40-2000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 40 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 2000
+          batchSize: 40
+    - label: create-asset-batch-50-2000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 50 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 2000
+          batchSize: 50
+    - label: create-asset-batch-1-4000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 1 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 4000
+          batchSize: 1
+    - label: create-asset-batch-10-4000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 10 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 4000
+          batchSize: 10
+    - label: create-asset-batch-20-4000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 20 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 4000
+          batchSize: 20
+    - label: create-asset-batch-30-4000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 30 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 4000
+          batchSize: 30
+    - label: create-asset-batch-40-4000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 40 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 4000
+          batchSize: 40
+    - label: create-asset-batch-50-4000
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAssetsFromBatch`, which
+        inserts a batch of 50 assets of size 8k bytes into the World State
+        database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 5
+      workload:
+        module: benchmarks/lib/batch-create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 4000
+          batchSize: 50                              
     - label: create-asset-batch-1-8000
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
