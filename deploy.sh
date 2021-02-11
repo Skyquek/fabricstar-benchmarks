@@ -233,7 +233,7 @@ do
         mv "report.html" "$TESTRUN/$reportid.html"
         rm caliper.log
 
-        sleep 10s
+        sleep 60s
         ((round=round+1))
     done
 done
