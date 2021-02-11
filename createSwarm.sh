@@ -15,12 +15,12 @@ do
 
     if [ "$count" == "0" ]; then
         # Assuming as Caliper Node
-        ssh "ubuntu@$line" -f "docker swarm leave --force; docker swarm init"
+        ssh "ubuntu@$line" -f "docker swarm init"
         sleep 5s
         token=$(ssh "ubuntu@$line" -f "docker swarm join-token manager | grep docker")
         echo $token
     else 
-        ssh "ubuntu@$line" -f "docker swarm leave --force; $token"
+        ssh "ubuntu@$line" -f "$token"
     fi
 
     ((count=count+1))

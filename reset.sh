@@ -9,6 +9,6 @@ while IFS= read -r line
 do
     echo "$line"
 
-    ssh "ubuntu@$line" -f "rm -rf caliper-benchmarks; docker container rm \$(docker ps -aq); docker volume rm \$(docker volume ls -q)"
+    ssh "ubuntu@$line" -f "rm -rf caliper-benchmarks; docker container rm \$(docker ps -aq); docker volume rm \$(docker volume ls -q); docker swarm leave --force"
 
 done < "$iplist"
