@@ -10,7 +10,7 @@ test:
     type: local
     number: 20
   rounds: 
-    - label: create-asset-load-400
+    - label: create-asset-load-150
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
@@ -20,12 +20,28 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 400
+          transactionLoad: 150
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
           byteSize: 4000   
+    - label: create-asset-load-300
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAsset`, which inserts
+        an asset of size 100 bytes into the World State database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 300
+      workload:
+        module: benchmarks/lib/create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 4000 
     - label: create-asset-load-450
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
@@ -41,39 +57,7 @@ test:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 4000 
-    - label: create-asset-load-500
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-load
-        opts:
-          transactionLoad: 500
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
           byteSize: 4000   
-    - label: create-asset-load-550
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-load
-        opts:
-          transactionLoad: 550
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 4000    
     - label: create-asset-load-600
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
@@ -89,39 +73,7 @@ test:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 4000   
-    - label: create-asset-load-650
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-load
-        opts:
-          transactionLoad: 650
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
           byteSize: 4000    
-    - label: create-asset-load-700
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-load
-        opts:
-          transactionLoad: 700
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 4000  
     - label: create-asset-load-750
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
@@ -137,23 +89,8 @@ test:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 4000 
-    - label: create-asset-load-800
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-load
-        opts:
-          transactionLoad: 800
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 4000                                                                                                              
+          byteSize: 4000   
+                                                                                                             
                                                                                  
                                                                                                                                  
 monitors:
