@@ -25,7 +25,7 @@ test:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 4000   
+          byteSize: 16000   
     - label: create-asset-load-300
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
@@ -41,7 +41,7 @@ test:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 4000 
+          byteSize: 16000 
     - label: create-asset-load-450
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
@@ -57,7 +57,7 @@ test:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 4000   
+          byteSize: 16000   
     - label: create-asset-load-600
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
@@ -73,7 +73,7 @@ test:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 4000    
+          byteSize: 16000    
     - label: create-asset-load-750
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
@@ -89,7 +89,7 @@ test:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 4000   
+          byteSize: 16000   
                                                                                                              
                                                                                  
                                                                                                                                  
