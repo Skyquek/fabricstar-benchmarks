@@ -10,7 +10,7 @@ test:
     type: local
     number: 20
   rounds:
-    - label: create-asset-load-1000
+    - label: create-asset-load-50
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
@@ -20,13 +20,13 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1000
+          transactionLoad: 50
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100  
-    - label: create-asset-load-1200
+          byteSize: 4000 
+    - label: create-asset-load-100
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
@@ -36,13 +36,13 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1200
+          transactionLoad: 100
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100    
-    - label: create-asset-load-1400
+          byteSize: 4000  
+    - label: create-asset-load-150
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
@@ -52,13 +52,13 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1400
+          transactionLoad: 150
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100    
-    - label: create-asset-load-1600
+          byteSize: 4000       
+    - label: create-asset-load-200
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
@@ -68,13 +68,13 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1600
+          transactionLoad: 200
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100   
-    - label: create-asset-load-1800
+          byteSize: 4000     
+    - label: create-asset-load-250
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
@@ -84,13 +84,13 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 1800
+          transactionLoad: 250
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100   
-    - label: create-asset-load-2000
+          byteSize: 4000       
+    - label: create-asset-load-300
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
@@ -100,13 +100,13 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 2000
+          transactionLoad: 300
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100   
-    - label: create-asset-load-2200
+          byteSize: 4000   
+    - label: create-asset-load-350
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
@@ -116,13 +116,13 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 2200
+          transactionLoad: 350
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100 
-    - label: create-asset-load-2400
+          byteSize: 4000    
+    - label: create-asset-load-400
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
@@ -132,60 +132,13 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 2400
+          transactionLoad: 400
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100    
-    - label: create-asset-load-2600
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-load
-        opts:
-          transactionLoad: 2600
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 100  
-    - label: create-asset-load-2800
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-load
-        opts:
-          transactionLoad: 2800
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 100    
-    - label: create-asset-load-3000
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-load
-        opts:
-          transactionLoad: 3000
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 100                                                                                   
+          byteSize: 4000                                           
+                                                                                 
                                                                                                                                  
 monitors:
     - none
