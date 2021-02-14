@@ -10,6 +10,22 @@ test:
     type: local
     number: 20
   rounds:
+    - label: create-asset-100
+      description: >-
+        Test a submitTransaction() Gateway method against the NodeJS
+        `fixed-asset` Smart Contract method named `createAsset`, which inserts
+        an asset of size 2000 bytes into the World State database.
+      chaincodeID: fixed-asset
+      txDuration: 300
+      rateControl:
+        type: fixed-load
+        opts:
+          transactionLoad: 1500
+      workload:
+        module: benchmarks/lib/create-asset.js
+        arguments:
+          chaincodeID: fixed-asset
+          byteSize: 100  
     - label: create-asset-2000
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
