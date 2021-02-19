@@ -75,7 +75,7 @@ Orderer: &OrdererDefaults
 
     BatchTimeout: 500ms
     BatchSize:
-        MaxMessageCount: 100
+        MaxMessageCount: 75
         AbsoluteMaxBytes: 10 MB
         PreferredMaxBytes: 2 MB
 
