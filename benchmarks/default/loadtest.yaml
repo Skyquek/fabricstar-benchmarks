@@ -8,9 +8,9 @@ test:
     the byteSize of the asset added into the world state database.
   workers:
     type: local
-    number: 20
+    number: 64
   rounds:   
-    - label: create-asset-load-300
+    - label: create-asset-load-1500
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
@@ -20,7 +20,7 @@ test:
       rateControl:
         type: fixed-load
         opts:
-          transactionLoad: 300
+          transactionLoad: 1500
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
