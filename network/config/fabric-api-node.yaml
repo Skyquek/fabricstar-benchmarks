@@ -73,19 +73,7 @@ clients:
             clientPrivateKey:
                 path: network/resources/crypto-config/peerOrganizations/org4.example.com/users/User1@org4.example.com/msp/keystore/key.pem
             clientSignedCert:
-                path: network/resources/crypto-config/peerOrganizations/org4.example.com/users/User1@org4.example.com/msp/signcerts/User1@org4.example.com-cert.pem 
-
-    # client0.org5.example.com:
-    #     client:
-    #         organization: Org5
-    #         credentialStore:
-    #             path: /tmp/hfc-kvs/org5
-    #             cryptoStore:
-    #                 path: /tmp/hfc-cvs/org5
-    #         clientPrivateKey:
-    #             path: network/resources/crypto-config/peerOrganizations/org5.example.com/users/User1@org5.example.com/msp/keystore/key.pem
-    #         clientSignedCert:
-    #             path: network/resources/crypto-config/peerOrganizations/org5.example.com/users/User1@org5.example.com/msp/signcerts/User1@org5.example.com-cert.pem                                            
+                path: network/resources/crypto-config/peerOrganizations/org4.example.com/users/User1@org4.example.com/msp/signcerts/User1@org4.example.com-cert.pem                                  
 
 channels:
     mychannel:
@@ -97,29 +85,16 @@ channels:
             version: 0
         orderers:
             - orderer0.example.com
-            - orderer1.example.com
-            - orderer2.example.com
+
         peers:
             peer0.org1.example.com:
                 eventSource: true
-            peer1.org1.example.com:
-                eventSource: true
             peer0.org2.example.com:
-                eventSource: true
-            peer1.org2.example.com:
-                eventSource: true                
+                eventSource: true            
             peer0.org3.example.com:
-                eventSource: true
-            peer1.org3.example.com:
-                eventSource: true                
+                eventSource: true           
             peer0.org4.example.com:
-                eventSource: true
-            peer1.org4.example.com:
-                eventSource: true                
-            # peer0.org5.example.com:
-            #     eventSource: true   
-            # peer1.org5.example.com:
-            #     eventSource: true                                                
+                eventSource: true                                                              
 
         contracts:
             - id: fixed-asset
@@ -127,7 +102,6 @@ channels:
               language: node
               path: src/fabric/api/fixed-asset/node
               metadataPath: src/fabric/api/fixed-asset/metadata  
-            #   endorsement-policy: { "identities": [{ "role": { "name": "member", "mspId": "Org1MSP" }},{ "role": { "name": "member", "mspId": "Org2MSP" }},{ "role": { "name": "member", "mspId": "Org3MSP" }},{ "role": { "name": "member", "mspId": "Org4MSP" }},{ "role": { "name": "member", "mspId": "Org5MSP" }},{ "role": { "name": "admin", "mspId": "Org1MSP" }},{ "role": { "name": "admin", "mspId": "Org2MSP" }},{ "role": { "name": "admin", "mspId": "Org3MSP" }},{ "role": { "name": "admin", "mspId": "Org4MSP" }},{ "role": { "name": "admin", "mspId": "Org5MSP" }}],"policy": {"1-of": [{ "signed-by": 0}, { "signed-by": 1 }, { "signed-by": 2 }, { "signed-by": 3}, { "signed-by": 4}, { "signed-by": 5}, { "signed-by": 6}, { "signed-by": 7}, { "signed-by": 8}, { "signed-by": 9}, { "signed-by": 10}]}}                 
               endorsement-policy: { "identities": [{ "role": { "name": "member", "mspId": "Org1MSP" }},{ "role": { "name": "member", "mspId": "Org2MSP" }},{ "role": { "name": "member", "mspId": "Org3MSP" }},{ "role": { "name": "member", "mspId": "Org4MSP" }}], "policy": {"1-of": [{ "signed-by": 0}, { "signed-by": 1 }, { "signed-by": 2 }, { "signed-by": 3 }]}}
 
 organizations:
@@ -135,7 +109,6 @@ organizations:
         mspid: Org1MSP
         peers:
             - peer0.org1.example.com
-            - peer1.org1.example.com
         certificateAuthorities:
             - ca.org1.example.com
         adminPrivateKey:
@@ -147,7 +120,6 @@ organizations:
         mspid: Org2MSP
         peers:
             - peer0.org2.example.com
-            - peer1.org2.example.com
         certificateAuthorities:
             - ca.org2.example.com
         adminPrivateKey:
@@ -159,7 +131,6 @@ organizations:
         mspid: Org3MSP
         peers:
             - peer0.org3.example.com
-            - peer1.org3.example.com
         certificateAuthorities:
             - ca.org3.example.com
         adminPrivateKey:
@@ -171,7 +142,6 @@ organizations:
         mspid: Org4MSP
         peers:
             - peer0.org4.example.com
-            - peer1.org4.example.com
         certificateAuthorities:
             - ca.org4.example.com
         adminPrivateKey:
@@ -179,33 +149,12 @@ organizations:
         signedCert:
             path: network/resources/crypto-config/peerOrganizations/org4.example.com/users/Admin@org4.example.com/msp/signcerts/Admin@org4.example.com-cert.pem    
 
-    # Org5:
-    #     mspid: Org5MSP
-    #     peers:
-    #         - peer0.org5.example.com
-    #         - peer1.org5.example.com
-    #     certificateAuthorities:
-    #         - ca.org5.example.com
-    #     adminPrivateKey:
-    #         path: network/resources/crypto-config/peerOrganizations/org5.example.com/users/Admin@org5.example.com/msp/keystore/key.pem
-    #     signedCert:
-    #         path: network/resources/crypto-config/peerOrganizations/org5.example.com/users/Admin@org5.example.com/msp/signcerts/Admin@org5.example.com-cert.pem                        
-
 orderers:
     orderer0.example.com:
         url: grpc://orderer0.example.com:7050
         grpcOptions:
             ssl-target-name-override: orderer0.example.com         
-
-    orderer1.example.com:
-        url: grpc://orderer1.example.com:7050
-        grpcOptions:
-            ssl-target-name-override: orderer1.example.com     
-
-    orderer2.example.com:
-        url: grpc://orderer2.example.com:7050
-        grpcOptions:
-            ssl-target-name-override: orderer2.example.com                         
+                
 
 peers:
     peer0.org1.example.com:
@@ -214,59 +163,23 @@ peers:
             ssl-target-name-override: peer0.org1.example.com
             grpc.keepalive_time_ms: 600000
 
-    peer1.org1.example.com:
-        url: grpc://peer1.org1.example.com:7051
-        grpcOptions:
-            ssl-target-name-override: peer1.org1.example.com
-            grpc.keepalive_time_ms: 600000
-
     peer0.org2.example.com:
         url: grpc://peer0.org2.example.com:7051
         grpcOptions:
             ssl-target-name-override: peer0.org2.example.com
-            grpc.keepalive_time_ms: 600000
-
-    peer1.org2.example.com:
-        url: grpc://peer1.org2.example.com:7051
-        grpcOptions:
-            ssl-target-name-override: peer1.org2.example.com
-            grpc.keepalive_time_ms: 600000            
+            grpc.keepalive_time_ms: 600000      
 
     peer0.org3.example.com:
         url: grpc://peer0.org3.example.com:7051
         grpcOptions:
             ssl-target-name-override: peer0.org3.example.com
-            grpc.keepalive_time_ms: 600000     
-
-    peer1.org3.example.com:
-        url: grpc://peer1.org3.example.com:7051
-        grpcOptions:
-            ssl-target-name-override: peer1.org3.example.com
-            grpc.keepalive_time_ms: 600000                  
+            grpc.keepalive_time_ms: 600000                   
 
     peer0.org4.example.com:
         url: grpc://peer0.org4.example.com:7051
         grpcOptions:
             ssl-target-name-override: peer0.org4.example.com
-            grpc.keepalive_time_ms: 600000     
-
-    peer1.org4.example.com:
-        url: grpc://peer1.org4.example.com:7051
-        grpcOptions:
-            ssl-target-name-override: peer1.org4.example.com
-            grpc.keepalive_time_ms: 600000               
-
-    # peer0.org5.example.com:
-    #     url: grpc://peer0.org5.example.com:7051
-    #     grpcOptions:
-    #         ssl-target-name-override: peer0.org5.example.com
-    #         grpc.keepalive_time_ms: 600000      
-
-    # peer1.org5.example.com:
-    #     url: grpc://peer1.org5.example.com:7051
-    #     grpcOptions:
-    #         ssl-target-name-override: peer1.org5.example.com
-    #         grpc.keepalive_time_ms: 600000                                 
+            grpc.keepalive_time_ms: 600000                                                
 
 certificateAuthorities:
     ca.org1.example.com:
@@ -299,12 +212,4 @@ certificateAuthorities:
             verify: false
         registrar:
             - enrollId: admin
-              enrollSecret: adminpw
-
-    # ca.org5.example.com:
-    #     url: http://ca.org5.example.com:7054
-    #     httpOptions:
-    #         verify: false
-    #     registrar:
-    #         - enrollId: admin
-    #           enrollSecret: adminpw                                          
+              enrollSecret: adminpw                                    
