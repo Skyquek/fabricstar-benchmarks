@@ -65,8 +65,12 @@ channels:
         peers:
             peer0.org1.example.com:
                 eventSource: true
+            peer1.org1.example.com:
+                eventSource: true
             peer0.org2.example.com:
-                eventSource: true                                                                       
+                eventSource: true  
+            peer1.org2.example.com:
+                eventSource: true                                                                                     
 
         contracts:
             - id: fixed-asset
@@ -113,11 +117,23 @@ peers:
             ssl-target-name-override: peer0.org1.example.com
             grpc.keepalive_time_ms: 600000
 
+    peer1.org1.example.com:
+        url: grpc://peer1.org1.example.com:7051
+        grpcOptions:
+            ssl-target-name-override: peer1.org1.example.com
+            grpc.keepalive_time_ms: 600000            
+
     peer0.org2.example.com:
         url: grpc://peer0.org2.example.com:7051
         grpcOptions:
             ssl-target-name-override: peer0.org2.example.com
-            grpc.keepalive_time_ms: 600000      
+            grpc.keepalive_time_ms: 600000     
+
+    peer1.org2.example.com:
+        url: grpc://peer1.org2.example.com:7051
+        grpcOptions:
+            ssl-target-name-override: peer1.org2.example.com
+            grpc.keepalive_time_ms: 600000              
                                          
 
 certificateAuthorities:
