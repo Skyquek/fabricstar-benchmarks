@@ -104,5 +104,48 @@ services:
             delay: 5s
             max_attempts: 3      
           placement:
-            constraints: [node.hostname == orderer0]                  
+            constraints: [node.hostname == orderer0]      
+
+    peer2Org1:        
+        image: ${PEERIMAGE}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=error:error
+        - CORE_CHAINCODE_LOGGING_LEVEL=ERROR
+        - CORE_CHAINCODE_LOGGING_SHIM=ERROR
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer2.org1.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org1MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer2.org1.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org1.example.com:7051
+        - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052        
+        - CORE_PEER_NETWORKID=fabricstar
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=fabricstar
+        - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9443
+        - CORE_METRICS_PROVIDER=prometheus
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 9051:7051
+        - 9052:7052
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../../resources/crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/:/etc/hyperledger/msp/peer
+        - ../../../../KafkaKeyPair:/etc/KafkaKeyPair 
+        networks:
+          fabricstar:
+            aliases:
+              - peer2.org1.example.com
+        deploy:
+          replicas: 1
+          restart_policy:
+            condition: on-failure
+            delay: 5s
+            max_attempts: 3      
+          placement:
+            constraints: [node.hostname == kafka1]                          
          

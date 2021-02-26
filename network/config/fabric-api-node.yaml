@@ -21,7 +21,7 @@ caliper:
 
 info:
     Version: 1.4
-    Size: 2 Orgs with 1 Peer
+    Size: 2 Orgs with 3 Peer
     Orderer: Kafka
     Distribution: Single Host
     StateDB: GoLevelDB
@@ -67,10 +67,14 @@ channels:
                 eventSource: true
             peer1.org1.example.com:
                 eventSource: true
+            peer2.org1.example.com:
+                eventSource: true
             peer0.org2.example.com:
                 eventSource: true  
             peer1.org2.example.com:
-                eventSource: true                                                                                     
+                eventSource: true    
+            peer2.org2.example.com:
+                eventSource: true                                                                                                   
 
         contracts:
             - id: fixed-asset
@@ -86,6 +90,7 @@ organizations:
         peers:
             - peer0.org1.example.com
             - peer1.org1.example.com
+            - peer2.org1.example.com
         certificateAuthorities:
             - ca.org1.example.com
         adminPrivateKey:
@@ -98,6 +103,7 @@ organizations:
         peers:
             - peer0.org2.example.com
             - peer1.org2.example.com
+            - peer2.org2.example.com
         certificateAuthorities:
             - ca.org2.example.com
         adminPrivateKey:
@@ -123,7 +129,13 @@ peers:
         url: grpc://peer1.org1.example.com:7051
         grpcOptions:
             ssl-target-name-override: peer1.org1.example.com
-            grpc.keepalive_time_ms: 600000            
+            grpc.keepalive_time_ms: 600000     
+
+    peer2.org1.example.com:
+        url: grpc://peer2.org1.example.com:7051
+        grpcOptions:
+            ssl-target-name-override: peer2.org1.example.com
+            grpc.keepalive_time_ms: 600000                   
 
     peer0.org2.example.com:
         url: grpc://peer0.org2.example.com:7051
@@ -135,7 +147,13 @@ peers:
         url: grpc://peer1.org2.example.com:7051
         grpcOptions:
             ssl-target-name-override: peer1.org2.example.com
-            grpc.keepalive_time_ms: 600000              
+            grpc.keepalive_time_ms: 600000      
+
+    peer2.org2.example.com:
+        url: grpc://peer2.org2.example.com:7051
+        grpcOptions:
+            ssl-target-name-override: peer2.org2.example.com
+            grpc.keepalive_time_ms: 600000                    
                                          
 
 certificateAuthorities:

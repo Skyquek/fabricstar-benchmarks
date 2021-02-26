@@ -24,4 +24,4 @@ services:
             delay: 5s
             max_attempts: 3
         placement:
-            constraints: [node.hostname == orderer2]  
+            constraints: [node.hostname == peer2]  
