@@ -90,6 +90,7 @@ organizations:
         peers:
             - peer0.org1.example.com
             - peer1.org1.example.com
+            - peer2.org1.example.com
         certificateAuthorities:
             - ca.org1.example.com
         adminPrivateKey:
@@ -102,6 +103,7 @@ organizations:
         peers:
             - peer0.org2.example.com
             - peer1.org2.example.com
+            - peer2.org2.example.com
         certificateAuthorities:
             - ca.org2.example.com
         adminPrivateKey:
@@ -127,6 +129,12 @@ peers:
         url: grpc://peer1.org1.example.com:7051
         grpcOptions:
             ssl-target-name-override: peer1.org1.example.com
+            grpc.keepalive_time_ms: 600000     
+
+    peer2.org1.example.com:
+        url: grpc://peer2.org1.example.com:7051
+        grpcOptions:
+            ssl-target-name-override: peer2.org1.example.com
             grpc.keepalive_time_ms: 600000                   
 
     peer0.org2.example.com:
@@ -139,7 +147,13 @@ peers:
         url: grpc://peer1.org2.example.com:7051
         grpcOptions:
             ssl-target-name-override: peer1.org2.example.com
-            grpc.keepalive_time_ms: 600000                      
+            grpc.keepalive_time_ms: 600000      
+
+    peer2.org2.example.com:
+        url: grpc://peer2.org2.example.com:7051
+        grpcOptions:
+            ssl-target-name-override: peer2.org2.example.com
+            grpc.keepalive_time_ms: 600000                    
                                          
 
 certificateAuthorities:

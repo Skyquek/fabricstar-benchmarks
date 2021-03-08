@@ -19,22 +19,31 @@ networks:
     external:
       name: fabricstar
 
-services: 
-    zookeeper0:
-        image: hyperledger/fabric-zookeeper
+services:
+
+    kafka0:        
+        image: ${KAFKAIMAGE}
         environment:
-        - ZOO_MY_ID=1
-        - ZOO_SERVERS=server.1=0.0.0.0:2888:3888
+        - KAFKA_MESSAGE_MAX_BYTES=1073741824  # 1024 * 1024 * 1024 B
+        - KAFKA_REPLICA_FETCH_MAX_BYTES=1073741824  # 1024 * 1024 * 1024 B
+        - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+        - KAFKA_BROKER_ID=0
+        - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181
+        - KAFKA_LOG_CLEANER_ENABLE=true
+        - KAFKA_LOG_POLICY=delete
+        - KAFKA_LOG_RETENTION_BYTES=4294967296         
         ports:
-        - 2181:2181
+        - 9092:9092
         networks:
           - fabricstar
+        volumes:
+        - ../../../KafkaKeyPair:/etc/KafkaKeyPair
         deploy:
           replicas: 1
           restart_policy:
-            condition: on-failure
-            delay: 5s
-            max_attempts: 3  
+              condition: on-failure
+              delay: 5s
+              max_attempts: 3
           placement:
-              constraints: [node.hostname == kafka1]        
-            
+              constraints: [node.hostname == kafka0]                   
+                          
