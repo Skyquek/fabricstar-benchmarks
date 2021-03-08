@@ -20,12 +20,12 @@ test:
       rateControl:
         type: fixed-rate
         opts:
-          tps: 500
+          tps: 200
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 100 
+          byteSize: 8000 
 monitors:
     resource:
     - module: prometheus
