@@ -156,46 +156,89 @@ def getMetrics(start_time, end_time, step):
 
 # Hyperledger 
 # Start and End time should be adjusted to your current run
-start_time = datetime.strptime('09 Mar 2021', '%d %b %Y')
-start_time = start_time.replace(hour=21, minute=1)
-
-end_time = start_time.replace(minute=4)
+start_time = datetime.strptime('10 Mar 2021', '%d %b %Y')
+start_times = [start_time.replace(hour=8, minute=3),start_time.replace(hour=8, minute=12),start_time.replace(hour=8, minute=35), start_time.replace(hour=8, minute=43),start_time.replace(hour=8, minute=51)]
+end_times = []
+for i in range(5):
+    hour = start_times[i].hour 
+    minute = start_times[i].minute % 60
+    if minute < start_times[i].minute:
+        hour = (hour + 1) % 24
+    end_times.append(start_time.replace(hour=hour, minute=minute))
 
 step = "5"
 
-hyperledger_results = getMetrics(start_time, end_time, step)
+hyperledger_results = [getMetrics(start_times[i], end_times[i], step) for i in range(5)]
 
 # Fabric Star 
-start_time = datetime.strptime('09 Mar 2021', '%d %b %Y')
-start_time = start_time.replace(hour=21, minute=10)
-
-end_time = start_time.replace(minute=13)
+start_times = [start_time.replace(hour=9, minute=46), start_time.replace(hour=9, minute=54), start_time.replace(hour=10, minute=2), start_time.replace(hour=10, minute=10),start_time.replace(hour=10, minute=18)]
+end_times = []
+for i in range(5):
+    hour = start_times[i].hour 
+    minute = start_times[i].minute % 60
+    if minute < start_times[i].minute:
+        hour = (hour + 1) % 24
+    end_times.append(start_time.replace(hour=hour, minute=minute))
 
 step = "5"
 
-fabricstar_results = getMetrics(start_time, end_time, step)
+fabricstar_results = [getMetrics(start_times[i], end_times[i], step) for i in range(5)]
 
 # Plot
 # id: [0] cpu, [1] mem, [2] network (out), [3] disk (write)
 # title of plot should be adjusted accordingly
 id = 3
-hyperledger = list(hyperledger_results[id].values())
-fabricstar = list(fabricstar_results[id].values())
-nodes = [x.split("_")[1] for x in hyperledger_results[id].keys()]
-hyperledger.append(hyperledger[0])
-fabricstar.append(fabricstar[0])
+
+# compute mean
+def mean(results, id):
+    mean = []
+    for res in results:
+        vals = list(res[id].values())
+        if len(mean) == 0:
+            mean = vals 
+        else:
+            for i in range(len(vals)):
+                mean[i] += vals[i]
+
+    return [m/len(results) for m in mean]
+
+#compute sd
+def sd(results, id, mean):
+    sd = []
+    for res in results:
+        vals = list(res[id].values())
+        if len(sd) == 0:
+            sd = [(mean[i] - vals[i])**2 for i in range(len(vals))]  
+        else:
+            for i in range(len(vals)):
+                sd[i] += (mean[i] - vals[i])**2
+
+    return [np.sqrt(s/len(results)) for s in sd]
+
+
+hyperledger_mean = mean(hyperledger_results, id)
+hyperledger_sd = sd(hyperledger_results, id, hyperledger_mean)
+fabricstar_mean = mean(fabricstar_results, id)
+fabricstar_sd = sd(fabricstar_results, id, fabricstar_mean)
+
+nodes = [x.split("_")[1] for x in hyperledger_results[0][id].keys()]
+hyperledger_mean.append(hyperledger_mean[0])
+hyperledger_sd.append(hyperledger_sd[0])
+fabricstar_mean.append(fabricstar_mean[0])
+fabricstar_sd.append(fabricstar_sd[0])
 
 plt.figure(figsize=(10, 8))
 plt.subplot(polar=True)
-theta = np.linspace(0, 2 * np.pi, len(hyperledger))
+theta = np.linspace(0, 2 * np.pi, len(nodes)+1)
 
 lines, labels = plt.thetagrids(range(0, 360, int(360/len(nodes))), (nodes))
 plt.tick_params(direction='out', pad=30)
 
-plt.plot(theta, hyperledger, "D-", linewidth=3)
-plt.plot(theta, fabricstar, "D-", linewidth=3)
+plt.plot(theta, hyperledger_mean, "D-", linewidth=3)
+plt.plot(theta, fabricstar_mean, "D-", linewidth=3)
+
 
 plt.legend(labels=('Hyperledger', 'Fabric*'), bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-plt.title("Disk Usage (Write) [MB]", y=1.05)
+plt.title("Disk Usage (Write) [MB/s]", y=1.05)
 
 plt.show()
