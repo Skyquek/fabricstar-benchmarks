@@ -8,24 +8,8 @@ test:
     the byteSize of the asset added into the world state database.
   workers:
     type: local
-    number: 12
-  rounds:         
-    - label: create-asset-rate-8000-300
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-rate
-        opts:
-          tps: 300
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 8000   
+    number: 20
+  rounds:          
     - label: create-asset-rate-8000-350
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
@@ -37,22 +21,6 @@ test:
         type: fixed-rate
         opts:
           tps: 350
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 8000   
-    - label: create-asset-rate-8000-400
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-rate
-        opts:
-          tps: 400
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:

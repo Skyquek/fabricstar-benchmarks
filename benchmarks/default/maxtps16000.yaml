@@ -8,7 +8,7 @@ test:
     the byteSize of the asset added into the world state database.
   workers:
     type: local
-    number: 12
+    number: 20
   rounds:          
     - label: create-asset-rate-16000-200
       description: >-
@@ -25,39 +25,7 @@ test:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 16000        
-    - label: create-asset-rate-16000-250
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-rate
-        opts:
-          tps: 250
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 16000  
-    - label: create-asset-rate-16000-300
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-rate
-        opts:
-          tps: 300
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 16000                                                                                                                                                                                                                                                                                                                                             
+          byteSize: 16000                                                                                                                                                                                                                                                                                                                                                     
                                                                                                                                  
 monitors:
     - none
