@@ -48,7 +48,7 @@ services:
         networks:
           - fabricstar
         deploy:
-          replicas: 7
+          replicas: 4
           restart_policy:
               condition: on-failure
               delay: 5s
@@ -73,7 +73,7 @@ services:
         networks:
           - fabricstar
         deploy:
-          replicas: 7
+          replicas: 4
           restart_policy:
               condition: on-failure
               delay: 5s
@@ -98,7 +98,7 @@ services:
         networks:
           - fabricstar
         deploy:
-          replicas: 6
+          replicas: 4
           restart_policy:
               condition: on-failure
               delay: 5s
