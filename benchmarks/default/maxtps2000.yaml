@@ -10,7 +10,7 @@ test:
     type: local
     number: 20
   rounds:      
-    - label: create-asset-rate-2000-600
+    - label: create-asset-rate-2000-650
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
@@ -20,7 +20,7 @@ test:
       rateControl:
         type: fixed-rate
         opts:
-          tps: 600
+          tps: 650
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
