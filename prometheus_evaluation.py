@@ -157,37 +157,38 @@ def getMetrics(start_time, end_time, step):
 # Hyperledger 
 # Start and End time should be adjusted to your current run
 start_time = datetime.strptime('10 Mar 2021', '%d %b %Y')
-start_times = [start_time.replace(hour=8, minute=3),start_time.replace(hour=8, minute=12),start_time.replace(hour=8, minute=35), start_time.replace(hour=8, minute=43),start_time.replace(hour=8, minute=51)]
+start_times = [start_time.replace(hour=8, minute=3)]
 end_times = []
 for i in range(5):
     hour = start_times[i].hour 
-    minute = start_times[i].minute % 60
+    minute = (start_times[i].minute+3) % 60
     if minute < start_times[i].minute:
         hour = (hour + 1) % 24
     end_times.append(start_time.replace(hour=hour, minute=minute))
 
 step = "5"
 
-hyperledger_results = [getMetrics(start_times[i], end_times[i], step) for i in range(5)]
+hyperledger_results = [getMetrics(start_times[i], end_times[i], step) for i in range(len(start_times))]
 
 # Fabric Star 
-start_times = [start_time.replace(hour=9, minute=46), start_time.replace(hour=9, minute=54), start_time.replace(hour=10, minute=2), start_time.replace(hour=10, minute=10),start_time.replace(hour=10, minute=18)]
+start_times = [start_time.replace(hour=9, minute=46)]
 end_times = []
 for i in range(5):
     hour = start_times[i].hour 
-    minute = start_times[i].minute % 60
+    minute = (start_times[i].minute+3) % 60
     if minute < start_times[i].minute:
         hour = (hour + 1) % 24
     end_times.append(start_time.replace(hour=hour, minute=minute))
 
 step = "5"
 
-fabricstar_results = [getMetrics(start_times[i], end_times[i], step) for i in range(5)]
+fabricstar_results = [getMetrics(start_times[i], end_times[i], step) for i in range(len(start_times))]
 
 # Plot
 # id: [0] cpu, [1] mem, [2] network (out), [3] disk (write)
 # title of plot should be adjusted accordingly
-id = 3
+id = 2
+titles = ["CPU Usage [%]", "Memory Usage [MB]", "Network Transmission (Out) [KB/s]", "Disk Usage (Write) [MB/s]"]
 
 # compute mean
 def mean(results, id):
@@ -239,6 +240,6 @@ plt.plot(theta, fabricstar_mean, "D-", linewidth=3)
 
 
 plt.legend(labels=('Hyperledger', 'Fabric*'), bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-plt.title("Disk Usage (Write) [MB/s]", y=1.05)
+plt.title(titles[id], y=1.05)
 
 plt.show()

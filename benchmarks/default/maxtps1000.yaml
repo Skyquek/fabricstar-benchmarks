@@ -9,8 +9,8 @@ test:
   workers:
     type: local
     number: 20
-  rounds:   
-    - label: create-asset-rate-1000-700
+  rounds:      
+    - label: create-asset-rate-1000-850
       description: >-
         Test a submitTransaction() Gateway method against the NodeJS
         `fixed-asset` Smart Contract method named `createAsset`, which inserts
@@ -20,25 +20,9 @@ test:
       rateControl:
         type: fixed-rate
         opts:
-          tps: 700
+          tps: 850
       workload:
         module: benchmarks/lib/create-asset.js
         arguments:
           chaincodeID: fixed-asset
-          byteSize: 1000   
-    - label: create-asset-rate-1000-750
-      description: >-
-        Test a submitTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `createAsset`, which inserts
-        an asset of size 100 bytes into the World State database.
-      chaincodeID: fixed-asset
-      txDuration: 300
-      rateControl:
-        type: fixed-rate
-        opts:
-          tps: 750
-      workload:
-        module: benchmarks/lib/create-asset.js
-        arguments:
-          chaincodeID: fixed-asset
-          byteSize: 1000   
+          byteSize: 1000 
