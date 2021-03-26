@@ -156,12 +156,12 @@ def getMetrics(start_time, end_time, step):
 
 # Hyperledger 
 # Start and End time should be adjusted to your current run
-start_time = datetime.strptime('10 Mar 2021', '%d %b %Y')
-start_times = [start_time.replace(hour=8, minute=3)]
+start_time = datetime.strptime('26 Mar 2021', '%d %b %Y')
+start_times = [start_time.replace(hour=13, minute=55)]
 end_times = []
-for i in range(5):
+for i in range(len(start_times)):
     hour = start_times[i].hour 
-    minute = (start_times[i].minute+3) % 60
+    minute = (start_times[i].minute+10) % 60
     if minute < start_times[i].minute:
         hour = (hour + 1) % 24
     end_times.append(start_time.replace(hour=hour, minute=minute))
@@ -171,11 +171,11 @@ step = "5"
 hyperledger_results = [getMetrics(start_times[i], end_times[i], step) for i in range(len(start_times))]
 
 # Fabric Star 
-start_times = [start_time.replace(hour=9, minute=46)]
+start_times = [start_time.replace(hour=14, minute=10)]
 end_times = []
-for i in range(5):
+for i in range(len(start_times)):
     hour = start_times[i].hour 
-    minute = (start_times[i].minute+3) % 60
+    minute = (start_times[i].minute+10) % 60
     if minute < start_times[i].minute:
         hour = (hour + 1) % 24
     end_times.append(start_time.replace(hour=hour, minute=minute))
